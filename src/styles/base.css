@@ -1,0 +1,51 @@
+:root {
+  /* ------ */
+  /* COLORS */
+  /* ------ */
+
+  --color: #000;
+  --color-primary: #F8CA3D;
+  --color-secondary: #959595;
+  --color-muted: #E6E6E6;
+
+  /* ---------- */
+  /* TYPOGRAPHY */
+  /* ---------- */
+
+  /* Type */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --weight-regular: 500;
+  --weight-bold: 700;
+  --weight-xbold: 900;
+
+  /* --------------- */
+  /* SHAPES & STYLES */
+  /* --------------- */
+
+  /* Radii */
+  --radius: 12px;
+  --radius-sm: 6px;
+
+  /* Shadows */
+  --shadow: 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 100px 80px rgba(0, 0, 0, 0.07);
+
+  /* Transitions */
+  --transition: 0.3s;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--color);
+}
+
+body,
+button,
+input {
+  font-family: var(--font-family);
+}
