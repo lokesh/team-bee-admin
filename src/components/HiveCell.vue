@@ -1,7 +1,10 @@
 <template>
   <svg
     class="hive-cell"
-    :class="{ 'center': center }"
+    :class="{
+      'center': center,
+      'outer': !center,
+    }"
     viewBox="0 0 120 103.92304845413263"
   >
     <polygon
@@ -49,7 +52,7 @@ export default {
 
 .letter {
   text-anchor: middle;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   font-size: 36px;
   text-transform: uppercase;
   user-select: none;
