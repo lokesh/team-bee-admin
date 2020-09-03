@@ -1,32 +1,27 @@
 <template>
   <div id="app">
-
-    <hive />
+    <word-input />
+    <div style="width: 320px">
+      <hive />
+    </div>
     <word-list />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import Hive from './components/Hive.vue';
+import WordInput from './components/WordInput.vue';
 import WordList from './components/WordList.vue'
 
 export default {
   name: 'App',
   components: {
     Hive,
+    WordInput,
     WordList,
   },
 
-  computed: {
-    ...mapState([
-      // 'centerLetter',
-      // 'outerLetters',
-    ]),
-  }, 
-
   mounted() {
-    // 'keypress' event doesn't support 'delete' key
     document.addEventListener('keydown', this.onKey)
   },
 

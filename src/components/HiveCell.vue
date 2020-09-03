@@ -6,6 +6,7 @@
       'outer': !center,
     }"
     viewBox="0 0 120 103.92304845413263"
+    @click="onClick"
   >
     <polygon
       class="shape"
@@ -38,17 +39,29 @@ export default {
       default: false,
     },
   },
-}
+
+  methods: {
+    onClick() {
+      this.$store.commit('addLetter', this.letter);
+    },
+  },
+};
 </script>
 
 <style scoped>
-.hive-cell {
-  width: 40%;
-}
-
 .shape {
   fill: var(--color-muted);
+  transform-origin: center center;
+  transition:
+    transform 0.1s,
+    fill 0.1s;
 }
+
+.shape:active {
+  transform: scale(0.85);
+  fill: var(--color-muted-dark);
+}
+
 
 .letter {
   text-anchor: middle;
@@ -56,6 +69,7 @@ export default {
   font-size: 36px;
   text-transform: uppercase;
   user-select: none;
+  pointer-events: none;
 }
 
 .center .shape {
