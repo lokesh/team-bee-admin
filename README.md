@@ -1,22 +1,27 @@
-# hive-words
+# Hive Words
 
-## Project setup
-```
-npm install
-```
+## To-do
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- [x] Wire up submit
+- [ ] Add submit notifications
+- [ ] Add caret for input
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### v2
 
-### Lints and fixes files
+- [ ] Persist data
+- [ ] Support puzzle switching
+
+
+### v3
+
+- [ ] Auto-gen puzzles
+
+
+## Quick start
+
 ```
+npm run serve // Compiles and hot-reloads for development
+npm run build // Compiles and minifies for production
 npm run lint
 ```
 

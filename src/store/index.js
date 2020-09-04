@@ -7,23 +7,35 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     input: '',
+    answers: ['abdomen', 'abode', 'boom', 'baboon', 'bend'],
     foundWords: [],
     centerLetter: 'b',
     outerLetters: ['m', 'a', 'e', 'o', 'n', 'd'],
   },
 
   mutations: {
-    addLetter(state, val) {
+    // Input
+    addInputLetter(state, val) {
         state.input = state.input + val;
     },
-    removeLetter(state) {
+    clearInput(state) {
+      state.input = '';
+    },
+    removeInputLetter(state) {
         state.input = state.input.slice(0, -1);
     },
     setInput(state, val) {
       state.input = val;
     },
-    shuffle(state) {
+
+    // Puzzle
+    shuffleOuterLetters(state) {
         state.outerLetters = shuffle(state.outerLetters);
+    },
+
+    // Scoreboard
+    addFoundWord(state, val) {
+      state.foundWords.push(val);
     },
   },
   
