@@ -4,25 +4,34 @@ Not sure how a keyboard only user would be able to use this. Odd decision on
 their part.
 -->
 <template>
-  <div
-    ref="input"
-    class="input"
-    @animationend="onAnimationEnd"
-  >
-    
-    <span
-      v-for="(letter, i) in letters"
-      :key="i"
-      class="letter"
-      :class="{
-        'letter': true,
-        'letter--center': letter === centerLetter,
-        'letter--invalid': ![centerLetter, ...outerLetters].includes(letter),
-      }"
-     >
-      {{ letter }}
-    </span>
-
+  <div class="wrapper">
+    <div
+      ref="notice"
+      class="notice"
+      @animationend="onNoticeEnd"
+    >
+      {{ noticeMsg }}
+    </div>
+    <div
+      ref="input"
+      class="input"
+      @animationend="onShakeEnd"
+    >
+      
+      <span
+        v-for="(letter, i) in letters"
+        :key="i"
+        class="letter"
+        :class="{
+          'letter': true,
+          'letter--center': letter === centerLetter,
+          'letter--invalid': ![centerLetter, ...outerLetters].includes(letter),
+        }"
+       >
+        {{ letter }}
+      </span>
+      <span class="caret" />
+    </div>
   </div>
 </template>
 
@@ -31,6 +40,13 @@ import { mapState } from "vuex";
 
 export default {
   name: 'WordInput',
+
+  data() {
+    return {
+      isNoticeVisible: false,
+      noticeMsg: '',
+    };
+  },
 
   computed: {
     ...mapState([
@@ -61,18 +77,22 @@ export default {
 
       // Too short
       if (this.input.length < 4) {
+        this.notice('Too short');
         this.shake();
       
       } else if (!this.input.includes(this.centerLetter)) { 
         // Missing center letter
+        this.notice('Missing center letter');
         this.shake(); 
   
       } else if (this.foundWords.includes(this.input)) {     
         // Already found
+        this.notice('Already found');
         this.shake();
       
       } else if (!this.answers.includes(this.input)) {
         // Not in word list
+        this.notice('Not in word list');
         this.shake(); 
       
       } else {     
@@ -83,7 +103,16 @@ export default {
       
     },
     
-    onAnimationEnd() {
+    notice(str) {
+      this.noticeMsg = str;
+      this.$refs.notice.classList.add('notice--visible');
+    },
+
+    onNoticeEnd() {
+      this.$refs.notice.classList.remove('notice--visible');
+    },
+
+    onShakeEnd() {
       this.$refs.input.classList.remove('input--error');
       this.$store.commit('clearInput');
     },
@@ -96,17 +125,41 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notice {
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  padding: 8px 12px;
+  color: white;
+  background: var(--color-bg-dark);
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+.notice--visible {
+  animation: fade-in-out 1.5s;
+}
+
 .input {
   display: flex;
   justify-content: center;
+  margin-top: 40px;
   font-size: 36px;
   font-weight: var(--weight-bold);
+  letter-spacing: 0.025em;
   text-align: center;
   text-transform: uppercase;
+  user-select: none;
 }
 
 .input--error {
-  animation: shake 0.9s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
+  animation: shake 1.0s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
 }
 
 .letter--center {
@@ -114,24 +167,50 @@ export default {
 }
 
 .letter--invalid {
-  color: var(--color-secondary);
+  color: var(--color-muted);
+}
+
+.caret {
+  width: 4px;
+  height: 1.2em;
+  background: var(--color-primary);
+  animation: blink 1.0s cubic-bezier(.215,.61,.355,1) forwards infinite;
 }
 
 @keyframes shake {
-    10%,90% {
+    10%, 90% {
         transform: translate3d(-1px, 0, 0)
     }
-
-    20%,80% {
+    20%, 80% {
         transform: translate3d(2px, 0, 0)
     }
-
-    30%,50%,70% {
+    30%, 50%, 70% {
         transform: translate3d(-4px, 0, 0)
     }
-
-    40%,60% {
+    40%, 60% {
         transform: translate3d(4px, 0, 0)
+    }
+}
+
+@keyframes fade-in-out {
+    0% {
+        opacity: 0;
+    }
+    20%,
+    80% {
+        opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+@keyframes blink {
+    from,to {
+        opacity: 1
+    }
+    50% {
+        opacity: 0
     }
 }
 

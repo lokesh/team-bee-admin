@@ -1,10 +1,14 @@
 <template>
-  <div id="app">
-    <word-input />
-    <div style="width: 320px">
+  <div class="app">
+    <div
+      class="col-gameboard"
+    >
+      <word-input class="word-input" />    
       <hive />
     </div>
-    <scoreboard />
+    <scoreboard 
+      class="col-scoreboard"
+    />
   </div>
 </template>
 
@@ -51,3 +55,20 @@ export default {
 @import "./styles/base.css";
 </style>
 
+<style scoped>
+.app {
+  display: flex;
+}
+
+.col-gameboard {
+  flex: 0 1 420px;
+  padding: 24px;
+}
+
+.col-scoreboard {
+  flex: 0 0 50%;
+}
+.word-input {
+  margin-bottom: 24px;
+}
+</style>

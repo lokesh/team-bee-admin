@@ -42,7 +42,7 @@ export default {
 
   methods: {
     onClick() {
-      this.$store.commit('addLetter', this.letter);
+      this.$store.commit('addInputLetter', this.letter);
     },
   },
 };

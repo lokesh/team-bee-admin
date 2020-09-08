@@ -8,6 +8,8 @@
   --color-secondary: #959595;
   --color-muted: #E6E6E6;
   --color-muted-dark: #d6d6d6;
+  --color-error: #FB2E2E;
+  --color-bg-dark: #333;
 
   /* ---------- */
   /* TYPOGRAPHY */
@@ -26,6 +28,10 @@
   /* Radii */
   --radius: 12px;
   --radius-sm: 6px;
+
+  /* Borders */
+  --border: 1px solid var(--color-muted);
+
 
   /* Shadows */
   --shadow: 0 12.5px 10px rgba(0, 0, 0, 0.035), 0 100px 80px rgba(0, 0, 0, 0.07);
@@ -49,4 +55,8 @@ body,
 button,
 input {
   font-family: var(--font-family);
+}
+
+p {
+  margin-top: 0;
 }

@@ -2,19 +2,23 @@
 
 ## To-do
 
-- [x] Wire up submit
-- [ ] Add submit notifications
-- [ ] Add caret for input
-
-### v2
-
 - [ ] Persist data
+
+---
+
+- [ ] Multiplayer design
+- [ ] Multiplauer implementation
+
+---
+
+
+- [ ] On key press, trigger animation on cell
+
+---
+
 - [ ] Support puzzle switching
-
-
-### v3
-
 - [ ] Auto-gen puzzles
+
 
 
 ## Quick start
