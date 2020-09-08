@@ -2,6 +2,7 @@
 
 ## To-do
 
+- [x] Delete, shuffle, enter buttons
 - [ ] Persist data
 
 ---

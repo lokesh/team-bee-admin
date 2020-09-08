@@ -11,6 +11,8 @@
   --color-error: #FB2E2E;
   --color-bg-dark: #333;
 
+  --color-focus: #3d88f8;
+
   /* ---------- */
   /* TYPOGRAPHY */
   /* ---------- */
@@ -30,7 +32,8 @@
   --radius-sm: 6px;
 
   /* Borders */
-  --border: 1px solid var(--color-muted);
+  --border: 1px solid var(--color-muted-dark);
+  --border-inline: 1px solid var(--color-muted);
 
 
   /* Shadows */

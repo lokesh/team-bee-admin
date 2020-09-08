@@ -37,9 +37,10 @@ their part.
 
 <script>
 import { mapState } from "vuex";
+import { EventBus } from '../event-bus.js';
 
 export default {
-  name: 'WordInput',
+  name: 'HiveInput',
 
   data() {
     return {
@@ -64,17 +65,41 @@ export default {
 
   mounted() {
     document.addEventListener('keydown', this.onKey);
+    EventBus.$on('submitInput', this.submit);
   },
 
   destroyed() {
     document.removeEventListener('keydown', this.onKey);
+    EventBus.$off('submitInput', this.submit);
   },
 
   methods: {
     onKey(e) {
       if (e.keyCode !== 13) return; 
+      
       // Enter pressed
+      this.submit();
+    },
+    
+    notice(str) {
+      this.noticeMsg = str;
+      this.$refs.notice.classList.add('notice--visible');
+    },
 
+    onNoticeEnd() {
+      this.$refs.notice.classList.remove('notice--visible');
+    },
+
+    onShakeEnd() {
+      this.$refs.input.classList.remove('input--error');
+      this.$store.commit('clearInput');
+    },
+
+    shake() {
+      this.$refs.input.classList.add('input--error');
+    }, 
+
+    submit() {
       // Too short
       if (this.input.length < 4) {
         this.notice('Too short');
@@ -100,26 +125,7 @@ export default {
         this.$store.commit('addFoundWord', this.input);
         this.$store.commit('clearInput');
       }
-      
-    },
-    
-    notice(str) {
-      this.noticeMsg = str;
-      this.$refs.notice.classList.add('notice--visible');
-    },
-
-    onNoticeEnd() {
-      this.$refs.notice.classList.remove('notice--visible');
-    },
-
-    onShakeEnd() {
-      this.$refs.input.classList.remove('input--error');
-      this.$store.commit('clearInput');
-    },
-
-    shake() {
-      this.$refs.input.classList.add('input--error');
-    },  
+    } ,
   },
 }
 </script>

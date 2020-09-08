@@ -1,28 +1,31 @@
 <template>
   <div class="app">
-    <div
-      class="col-gameboard"
-    >
-      <word-input class="word-input" />    
-      <hive />
+    
+    <div class="col-gameboard">
+      <hive-input class="hive-input" />    
+      <hive class="hive" />
+      <hive-actions class="hive-actions" />    
     </div>
-    <scoreboard 
-      class="col-scoreboard"
-    />
+
+    <scoreboard class="col-scoreboard" />
+
   </div>
 </template>
 
 <script>
 import Hive from './components/Hive.vue';
+import HiveActions from './components/HiveActions.vue';
+import HiveInput from './components/HiveInput.vue';
 import Scoreboard from './components/Scoreboard.vue'
-import WordInput from './components/WordInput.vue';
+
 
 export default {
   name: 'App',
   components: {
     Hive,
     Scoreboard,
-    WordInput,
+    HiveActions,
+    HiveInput,
   },
 
   mounted() {
@@ -35,7 +38,7 @@ export default {
 
   methods: {
     onKey(e) {
-        // Note: Enter key is handled in WordInput.vue
+        // Note: Enter key is handled in HiveInput.vue
         
         if (e.keyCode === 8 || e.keyCode === 46) {  // Backspace and Delete
           this.$store.commit('removeInputLetter');         
@@ -68,7 +71,13 @@ export default {
 .col-scoreboard {
   flex: 0 0 50%;
 }
-.word-input {
+
+.hive-input {
   margin-bottom: 24px;
 }
+
+.hive {
+  margin-bottom: 24px;
+}
+
 </style>

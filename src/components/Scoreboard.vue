@@ -70,8 +70,12 @@ export default {
 
 .word {
   padding: 0.4em;
-  border-bottom: var(--border);
+  border-bottom: var(--border-inline);
   font-size: 18px;
   text-transform: capitalize;
+}
+
+.word:last-of-type {
+  border-bottom: none;
 }
 </style>

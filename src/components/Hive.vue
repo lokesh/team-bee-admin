@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 import HiveCell from './HiveCell.vue';
 
 export default {
