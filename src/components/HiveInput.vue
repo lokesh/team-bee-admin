@@ -1,16 +1,11 @@
-<!-- 
-Fake input, mimicking NYT execution.
-Not sure how a keyboard only user would be able to use this. Odd decision on
-their part.
--->
 <template>
   <div class="wrapper">
     <div
       ref="notice"
       class="notice"
       @animationend="onNoticeEnd"
+      v-html="noticeMsg"
     >
-      {{ noticeMsg }}
     </div>
     <div
       ref="input"
@@ -36,8 +31,9 @@ their part.
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 import { EventBus } from '../event-bus.js';
+import { calcPoints, isPangram } from '../utils';
 
 export default {
   name: 'HiveInput',
@@ -100,8 +96,16 @@ export default {
     }, 
 
     submit() {
-      // Too short
-      if (this.input.length < 4) {
+      // Used a wrong letter
+      if (!this.input
+          .split('')
+          .every(letter => [this.centerLetter, ...this.outerLetters].includes(letter))
+        ) {
+        this.notice('Wrong letters');
+        this.shake();
+      
+      } else if (this.input.length < 4) {
+        // Too short
         this.notice('Too short');
         this.shake();
       
@@ -122,6 +126,9 @@ export default {
       
       } else {     
         // Good!
+        let points = calcPoints([this.input]);
+        let str = isPangram(this.input) ? 'Pangram! ' : '';
+        this.notice(`${str} +${points}`);
         this.$store.commit('addFoundWord', this.input);
         this.$store.commit('clearInput');
       }
@@ -146,6 +153,7 @@ export default {
   background: var(--color-bg-dark);
   border-radius: var(--radius);
   pointer-events: none;
+  text-align: center;
 }
 
 .notice--visible {
@@ -165,7 +173,7 @@ export default {
 }
 
 .input--error {
-  animation: shake 1.0s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
+  animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both
 }
 
 .letter--center {

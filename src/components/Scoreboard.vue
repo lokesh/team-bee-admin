@@ -10,7 +10,7 @@
         </template>
       </p>
       <p class="msg-max">
-        Out of a possible {{ answers.length }} words and {{ possiblePoints }} points
+        {{ answers.length }} words and {{ possiblePoints }} points available
       </p>
 
       <div class="list">
@@ -54,6 +54,10 @@ export default {
   margin-bottom: 24px;
 }
 
+.msg-score {
+  font-weight: bold;
+}
+
 .msg-max {
   color: var(--color-secondary);
 }
@@ -69,7 +73,7 @@ export default {
 }
 
 .word {
-  padding: 0.4em;
+  padding: 0.4em 0;
   border-bottom: var(--border-inline);
   font-size: 18px;
   text-transform: capitalize;

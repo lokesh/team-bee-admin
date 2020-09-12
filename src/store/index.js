@@ -1,28 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import shuffle from 'lodash.shuffle';
+import { calcPoints } from '../utils';
 
 Vue.use(Vuex)
-
-/**
- * Calculate points
- *  - 4 letter words = 1 pt
- *  - Every letter after is +1 pt
- *  - If all 7 letters are used ("pangram"), +7pts
- *  
- * @param  {[String]} words 
- * @param  {[String]} letters
- * @return {Number} points as integer
- */
-const calcPoints = (words, letters) => words.reduce((totalPoints, word) => {
-  let wordPoints = word.length - 3;
-  let isPangram = letters.every(letter => word.includes(letter));
-  if (isPangram) {
-    wordPoints += 7;
-  }
-  return totalPoints += wordPoints
-}, 0);
-
 
 export default new Vuex.Store({
   state: {

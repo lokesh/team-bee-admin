@@ -55,6 +55,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 707,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -139,10 +147,32 @@
 		"/Users/lokesh/Projects/hive-words",
 		"/Users/lokesh/Projects/hive-words/public",
 		"/Users/lokesh/Projects/hive-words/src",
-		"/Users/lokesh/Projects/hive-words/src/components"
+		"/Users/lokesh/Projects/hive-words/src/assets",
+		"/Users/lokesh/Projects/hive-words/src/components",
+		"/Users/lokesh/Projects/hive-words/src/store",
+		"/Users/lokesh/Projects/hive-words/src/styles"
 	],
 	"file_history":
 	[
+		"/Users/lokesh/Projects/hive-words/src/styles/base.css",
+		"/Users/lokesh/Projects/hive-words/src/components/Scoreboard.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveInput.vue",
+		"/Users/lokesh/Projects/hive-words/.eslintrc.js",
+		"/Users/lokesh/Projects/hive-words/package.json",
+		"/Users/lokesh/Projects/hive-words/babel.config.js",
+		"/Users/lokesh/Projects/hive-words/src/event-bus.js",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveActions.vue",
+		"/Users/lokesh/Projects/hive-words/src/main.js",
+		"/Users/lokesh/Projects/hive-words/README.md",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveButton.vue",
+		"/Users/lokesh/Projects/hive-words/src/store/index.js",
+		"/Users/lokesh/Projects/hive-words/src/App.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/Hive.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveCell.vue",
+		"/Users/lokesh/Desktop/Cash App vs Venmo.md",
+		"/Users/lokesh/Projects/hive-words/src/components/WordInput.vue",
+		"/Users/lokesh/Projects/hive-words/node_modules/http-deceiver/.travis.yml",
+		"/Users/lokesh/Projects/hive-words/hive-words.sublime-project",
 		"/Users/lokesh/Projects/color-stacks/vue.config.js",
 		"/Users/lokesh/Projects/color-stacks/src/components/CurveToggle.vue",
 		"/Users/lokesh/Projects/color-stacks/src/styles/base.css",
@@ -251,36 +281,19 @@
 		"/Users/lokesh/Projects/lokesh-dhakar/dist/css/main.css",
 		"/Users/lokesh/Projects/lokesh-dhakar/src/running.md",
 		"/Users/lokesh/Projects/color-thief-site/css/main.css",
-		"/Users/lokesh/Projects/color-thief-site/index.html",
-		"/Users/lokesh/Projects/color-thief-site/js/demo.js",
-		"/Users/lokesh/Projects/color-thief-site/js/github.js",
-		"/Users/lokesh/Projects/color-thief-site/build/github.js",
-		"/Users/lokesh/Projects/color-thief-site/css/prism.css",
-		"/Users/lokesh/Projects/color-thief-site/js/prism.min.js",
-		"/Users/lokesh/Projects/color-thief/CONTRIBUTING.md",
-		"/Users/lokesh/Projects/color-thief/README.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/three-body-problem.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/of-fathers-and-sons.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/the-jungle.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/neither-wolf-nor-dog.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/cold-war.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/salad-days.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/purple-mountains.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/README.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/hatching-twitter.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/package.json",
-		"/Users/lokesh/Projects/lokesh-dhakar/build.js",
-		"/Users/lokesh/Projects/lokesh-dhakar/node_modules/.bin/metalsmith"
+		"/Users/lokesh/Projects/color-thief-site/index.html"
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
-		"height": 101.0,
+		"height": 102.0,
 		"where_history":
 		[
+			"src/*, -node_modules/*",
+			""
 		]
 	},
 	"find_state":
@@ -288,6 +301,24 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"shake",
+			"shuffle",
+			"wordinp",
+			"word-inp",
+			"words",
+			"switch",
+			"points",
+			"border: ",
+			"#F8CA3D",
+			"blink",
+			"shuffle",
+			"addlett",
+			"iserror",
+			"has-error",
+			"handlekeyup",
+			"handlekeydown",
+			"dt",
+			"document."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -305,8 +336,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 707,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -316,7 +376,7 @@
 	},
 	"input":
 	{
-		"height": 39.0
+		"height": 40.0
 	},
 	"layout":
 	{
@@ -359,16 +419,80 @@
 		"selected_items":
 		[
 			[
+				"base",
+				"src/styles/base.css"
+			],
+			[
+				"hiveinpu",
+				"src/components/HiveInput.vue"
+			],
+			[
+				"scorebo",
+				"src/components/Scoreboard.vue"
+			],
+			[
+				"hiveinput",
+				"src/components/HiveInput.vue"
+			],
+			[
+				"index.js",
+				"src/store/index.js"
+			],
+			[
+				"hivebutt",
+				"src/components/HiveButton.vue"
+			],
+			[
+				"store index.js",
+				"src/store/index.js"
+			],
+			[
+				"hiveactions",
+				"src/components/HiveActions.vue"
+			],
+			[
+				"wordinput",
+				"src/components/WordInput.vue"
+			],
+			[
+				"base.c",
+				"src/styles/base.css"
+			],
+			[
+				"store index.",
+				"src/store/index.js"
+			],
+			[
+				"hive",
+				"src/components/HiveCell.vue"
+			],
+			[
+				"input.",
+				"src/components/WordInput.vue"
+			],
+			[
+				"app.v",
+				"src/App.vue"
+			],
+			[
+				"hive.vu",
+				"src/components/Hive.vue"
+			],
+			[
+				"hive.vi",
+				"node_modules/http-deceiver/.travis.yml"
+			],
+			[
+				"hivecell",
+				"src/components/HiveCell.vue"
+			],
+			[
 				"packa",
 				"package.json"
 			],
 			[
 				"toggle",
 				"src/components/CurveToggle.vue"
-			],
-			[
-				"base.c",
-				"src/styles/base.css"
 			],
 			[
 				"section",
@@ -507,10 +631,6 @@
 				"src/main.js"
 			],
 			[
-				"app.v",
-				"src/App.vue"
-			],
-			[
 				"export",
 				"src/views/ExportModal.vue"
 			],
@@ -577,10 +697,6 @@
 			[
 				"colors.",
 				"node_modules/webpack-dev-server/lib/utils/colors.js"
-			],
-			[
-				"base",
-				"src/styles/base.css"
 			],
 			[
 				"section col",
@@ -813,62 +929,6 @@
 			[
 				"block.v",
 				"src/components/Stack/StackBlock.vue"
-			],
-			[
-				"color",
-				"src/components/ColorStacks.vue"
-			],
-			[
-				"stackb",
-				"src/components/Stack/StackBlock.vue"
-			],
-			[
-				"export.v",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"export.ve",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"stack.v",
-				"src/components/Stack/Stack.vue"
-			],
-			[
-				"colorstack",
-				"src/components/ColorStacks.vue"
-			],
-			[
-				"utils",
-				"src/utils.js"
-			],
-			[
-				"util.",
-				"node_modules/lodash/util.js"
-			],
-			[
-				"sectioncol",
-				"src/components/SectionColor.vue"
-			],
-			[
-				"palette",
-				"src/components/Palette.vue"
-			],
-			[
-				"section ex",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"utils.j",
-				"src/utils.js"
-			],
-			[
-				"utils.",
-				"src/utils.js"
-			],
-			[
-				"swatch",
-				"src/components/Swatch.vue"
 			]
 		],
 		"width": 0.0

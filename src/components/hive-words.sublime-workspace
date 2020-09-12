@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"al",
+				"align-content\tproperty"
+			],
+			[
 				"template-",
 				"grid-template-areas\tproperty"
 			],
@@ -68,16 +72,20 @@
 		"selected_items":
 		[
 			[
+				"listp",
+				"Package Control: List Packages"
+			],
+			[
+				"theme",
+				"UI: Select Color Scheme"
+			],
+			[
 				"instal",
 				"Package Control: Install Package"
 			],
 			[
 				"list",
 				"Package Control: List Packages"
-			],
-			[
-				"theme",
-				"UI: Select Color Scheme"
 			],
 			[
 				"the",
@@ -134,15 +142,37 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
-	"expanded_folders":
-	[
-		"/Users/lokesh/Projects/hive-words",
-		"/Users/lokesh/Projects/hive-words/public",
-		"/Users/lokesh/Projects/hive-words/src",
-		"/Users/lokesh/Projects/hive-words/src/components"
-	],
 	"file_history":
 	[
+		"/Users/lokesh/Projects/learning-socketio/client/public/index.html",
+		"/Users/lokesh/Projects/learning-socketio/client/src/styles/base.css",
+		"/Users/lokesh/Projects/learning-socketio/client/src/App.vue",
+		"/Users/lokesh/Projects/learning-socketio/client/src/pages/Login.vue",
+		"/Users/lokesh/Projects/learning-socketio/.editorconfig",
+		"/Users/lokesh/Projects/learning-socketio/client/src/views/Login.vue",
+		"/Users/lokesh/Projects/learning-socketio/client/src/router/index.js",
+		"/Users/lokesh/Projects/learning-socketio/client/src/views/Room.vue",
+		"/Users/lokesh/Projects/learning-socketio/server/package.json",
+		"/Users/lokesh/Projects/learning-socketio/server/package",
+		"/Users/lokesh/Projects/learning-socketio/client/package.json",
+		"/Users/lokesh/Projects/learning-socketio/client/README.md",
+		"/Users/lokesh/Projects/learning-socketio/server/app.js",
+		"/Users/lokesh/Projects/scatter/server/package.json",
+		"/Users/lokesh/Projects/hive-words/src/event-bus.js",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveButton.vue",
+		"/Users/lokesh/Projects/hive-words/src/App.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveActions.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/Hive.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveCell.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/Scoreboard.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveInput.vue",
+		"/Users/lokesh/Projects/hive-words/README.md",
+		"/Users/lokesh/Projects/hive-words/src/store/index.js",
+		"/Users/lokesh/Desktop/Cash App vs Venmo.md",
+		"/Users/lokesh/Projects/hive-words/src/components/WordInput.vue",
+		"/Users/lokesh/Projects/hive-words/src/styles/base.css",
+		"/Users/lokesh/Projects/hive-words/node_modules/http-deceiver/.travis.yml",
+		"/Users/lokesh/Projects/hive-words/hive-words.sublime-project",
 		"/Users/lokesh/Projects/color-stacks/vue.config.js",
 		"/Users/lokesh/Projects/color-stacks/src/components/CurveToggle.vue",
 		"/Users/lokesh/Projects/color-stacks/src/styles/base.css",
@@ -241,36 +271,7 @@
 		"/Users/lokesh/Projects/colortron/PaletteSimple.vue",
 		"/Users/lokesh/Projects/colortron/Palette.vue",
 		"/Users/lokesh/Projects/colortron/SwatchSimple.vue",
-		"/Users/lokesh/Projects/colortron/Swatch.vue",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/css/main.css",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/primary.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/american-factory.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/digital-gold.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/layouts/page.njk",
-		"/Users/lokesh/Projects/lokesh-dhakar/dist/css/main.css",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/running.md",
-		"/Users/lokesh/Projects/color-thief-site/css/main.css",
-		"/Users/lokesh/Projects/color-thief-site/index.html",
-		"/Users/lokesh/Projects/color-thief-site/js/demo.js",
-		"/Users/lokesh/Projects/color-thief-site/js/github.js",
-		"/Users/lokesh/Projects/color-thief-site/build/github.js",
-		"/Users/lokesh/Projects/color-thief-site/css/prism.css",
-		"/Users/lokesh/Projects/color-thief-site/js/prism.min.js",
-		"/Users/lokesh/Projects/color-thief/CONTRIBUTING.md",
-		"/Users/lokesh/Projects/color-thief/README.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/three-body-problem.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/of-fathers-and-sons.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/the-jungle.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/neither-wolf-nor-dog.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/cold-war.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/salad-days.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/purple-mountains.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/README.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/hatching-twitter.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/package.json",
-		"/Users/lokesh/Projects/lokesh-dhakar/build.js",
-		"/Users/lokesh/Projects/lokesh-dhakar/node_modules/.bin/metalsmith"
+		"/Users/lokesh/Projects/colortron/Swatch.vue"
 	],
 	"find":
 	{
@@ -278,7 +279,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 101.0,
+		"height": 102.0,
 		"where_history":
 		[
 		]
@@ -316,7 +317,7 @@
 	},
 	"input":
 	{
-		"height": 39.0
+		"height": 40.0
 	},
 	"layout":
 	{
@@ -359,16 +360,96 @@
 		"selected_items":
 		[
 			[
+				"room.",
+				"client/src/views/Room.vue"
+			],
+			[
+				"app.vu",
+				"client/src/App.vue"
+			],
+			[
+				"index.",
+				"client/public/index.html"
+			],
+			[
+				"base.c",
+				"client/src/styles/base.css"
+			],
+			[
+				"base.",
+				"client/src/styles/base.css"
+			],
+			[
+				"login.vue",
+				"client/src/views/Login.vue"
+			],
+			[
+				"index.js",
+				"src/store/index.js"
+			],
+			[
+				"hiveinput",
+				"src/components/HiveInput.vue"
+			],
+			[
+				"hivebutt",
+				"src/components/HiveButton.vue"
+			],
+			[
+				"store index.js",
+				"src/store/index.js"
+			],
+			[
+				"hiveactions",
+				"src/components/HiveActions.vue"
+			],
+			[
+				"scorebo",
+				"src/components/Scoreboard.vue"
+			],
+			[
+				"wordinput",
+				"src/components/WordInput.vue"
+			],
+			[
+				"base",
+				"src/styles/base.css"
+			],
+			[
+				"store index.",
+				"src/store/index.js"
+			],
+			[
+				"hive",
+				"src/components/HiveCell.vue"
+			],
+			[
+				"input.",
+				"src/components/WordInput.vue"
+			],
+			[
+				"app.v",
+				"src/App.vue"
+			],
+			[
+				"hive.vu",
+				"src/components/Hive.vue"
+			],
+			[
+				"hive.vi",
+				"node_modules/http-deceiver/.travis.yml"
+			],
+			[
+				"hivecell",
+				"src/components/HiveCell.vue"
+			],
+			[
 				"packa",
 				"package.json"
 			],
 			[
 				"toggle",
 				"src/components/CurveToggle.vue"
-			],
-			[
-				"base.c",
-				"src/styles/base.css"
 			],
 			[
 				"section",
@@ -413,10 +494,6 @@
 			[
 				"spectrum",
 				"src/components/Spectrum/Spectrum.vue"
-			],
-			[
-				"base.",
-				"src/styles/base.css"
 			],
 			[
 				"base.css",
@@ -507,10 +584,6 @@
 				"src/main.js"
 			],
 			[
-				"app.v",
-				"src/App.vue"
-			],
-			[
 				"export",
 				"src/views/ExportModal.vue"
 			],
@@ -579,10 +652,6 @@
 				"node_modules/webpack-dev-server/lib/utils/colors.js"
 			],
 			[
-				"base",
-				"src/styles/base.css"
-			],
-			[
 				"section col",
 				"src/views/SectionColor.vue"
 			],
@@ -641,10 +710,6 @@
 			[
 				"menu b",
 				"src/views/MenuBar.vue"
-			],
-			[
-				"app.vu",
-				"src/App.vue"
 			],
 			[
 				"sectgray",
@@ -805,70 +870,6 @@
 			[
 				"eslintrc",
 				"node_modules/babel-plugin-dynamic-import-node/.eslintrc"
-			],
-			[
-				"sectionex",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"block.v",
-				"src/components/Stack/StackBlock.vue"
-			],
-			[
-				"color",
-				"src/components/ColorStacks.vue"
-			],
-			[
-				"stackb",
-				"src/components/Stack/StackBlock.vue"
-			],
-			[
-				"export.v",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"export.ve",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"stack.v",
-				"src/components/Stack/Stack.vue"
-			],
-			[
-				"colorstack",
-				"src/components/ColorStacks.vue"
-			],
-			[
-				"utils",
-				"src/utils.js"
-			],
-			[
-				"util.",
-				"node_modules/lodash/util.js"
-			],
-			[
-				"sectioncol",
-				"src/components/SectionColor.vue"
-			],
-			[
-				"palette",
-				"src/components/Palette.vue"
-			],
-			[
-				"section ex",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"utils.j",
-				"src/utils.js"
-			],
-			[
-				"utils.",
-				"src/utils.js"
-			],
-			[
-				"swatch",
-				"src/components/Swatch.vue"
 			]
 		],
 		"width": 0.0

@@ -3,7 +3,9 @@
 ## To-do
 
 - [x] Delete, shuffle, enter buttons
-- [ ] Persist data
+- [ ] On submit of a good word, show notice that animates up with points (+4)
+- [ ] Test Heroku deploy of Vue app hitting API
+- [ ] Support puzzle switching, persist puzzle data
 
 ---
 
@@ -17,7 +19,8 @@
 
 ---
 
-- [ ] Support puzzle switching
+- [ ] API authentication
+
 - [ ] Auto-gen puzzles
 
 
