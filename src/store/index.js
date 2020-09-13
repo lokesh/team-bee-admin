@@ -12,6 +12,7 @@ export default new Vuex.Store({
     foundWords: [],
     centerLetter: 'a',
     outerLetters: ["b","h","i","l","t","u"],
+    user: null, // { id: 1, name: 'Rowan' }
   },
 
   mutations: {
@@ -23,10 +24,24 @@ export default new Vuex.Store({
       state.input = '';
     },
     removeInputLetter(state) {
-        state.input = state.input.slice(0, -1);
+      state.input = state.input.slice(0, -1);
     },
     setInput(state, val) {
       state.input = val;
+    },
+    
+    setUser(state, val) {
+      state.user = val;
+      if (localStorage) {
+        localStorage.setItem('user', JSON.stringify(val));
+      }
+    },
+
+    clearUser(state) {
+      state.user = null;
+      if (localStorage) {
+        localStorage.removeItem('user');
+      }
     },
 
     // Puzzle
@@ -41,12 +56,10 @@ export default new Vuex.Store({
     },
   },
   
-  actions: {
-  },
-
   getters: {
     letters: (state) => [state.centerLetter, ...state.outerLetters],
     points: (state, getters) => calcPoints(state.foundWords, getters.letters),
     possiblePoints: (state, getters) => calcPoints(state.answers, getters.letters),
-  },  
+  },
+
 })

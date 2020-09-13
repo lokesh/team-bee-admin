@@ -55,14 +55,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "package.json",
-			"settings":
-			{
-				"buffer_size": 707,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -144,29 +136,26 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/lokesh/Projects/hive-words",
-		"/Users/lokesh/Projects/hive-words/public",
-		"/Users/lokesh/Projects/hive-words/src",
-		"/Users/lokesh/Projects/hive-words/src/assets",
-		"/Users/lokesh/Projects/hive-words/src/components",
-		"/Users/lokesh/Projects/hive-words/src/store",
-		"/Users/lokesh/Projects/hive-words/src/styles"
+		"/Users/lokesh/Projects/hive-words"
 	],
 	"file_history":
 	[
-		"/Users/lokesh/Projects/hive-words/src/styles/base.css",
-		"/Users/lokesh/Projects/hive-words/src/components/Scoreboard.vue",
-		"/Users/lokesh/Projects/hive-words/src/components/HiveInput.vue",
+		"/Users/lokesh/Projects/hive-words/src/store/index.js",
+		"/Users/lokesh/Projects/hive-words/src/utils/index.js",
+		"/Users/lokesh/Projects/hive-words/README.md",
 		"/Users/lokesh/Projects/hive-words/.eslintrc.js",
+		"/Users/lokesh/Projects/hive-words/src/App.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveInput.vue",
+		"/Users/lokesh/Projects/hive-words/src/styles/base.css",
+		"/Users/lokesh/Projects/hive-words/node_modules/utils-merge/index.js",
+		"/Users/lokesh/Projects/hive-words/src/utils/calcPoints.js",
 		"/Users/lokesh/Projects/hive-words/package.json",
+		"/Users/lokesh/Projects/hive-words/src/components/Scoreboard.vue",
 		"/Users/lokesh/Projects/hive-words/babel.config.js",
 		"/Users/lokesh/Projects/hive-words/src/event-bus.js",
 		"/Users/lokesh/Projects/hive-words/src/components/HiveActions.vue",
 		"/Users/lokesh/Projects/hive-words/src/main.js",
-		"/Users/lokesh/Projects/hive-words/README.md",
 		"/Users/lokesh/Projects/hive-words/src/components/HiveButton.vue",
-		"/Users/lokesh/Projects/hive-words/src/store/index.js",
-		"/Users/lokesh/Projects/hive-words/src/App.vue",
 		"/Users/lokesh/Projects/hive-words/src/components/Hive.vue",
 		"/Users/lokesh/Projects/hive-words/src/components/HiveCell.vue",
 		"/Users/lokesh/Desktop/Cash App vs Venmo.md",
@@ -278,10 +267,7 @@
 		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/american-factory.md",
 		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/digital-gold.md",
 		"/Users/lokesh/Projects/lokesh-dhakar/src/layouts/page.njk",
-		"/Users/lokesh/Projects/lokesh-dhakar/dist/css/main.css",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/running.md",
-		"/Users/lokesh/Projects/color-thief-site/css/main.css",
-		"/Users/lokesh/Projects/color-thief-site/index.html"
+		"/Users/lokesh/Projects/lokesh-dhakar/dist/css/main.css"
 	],
 	"find":
 	{
@@ -301,6 +287,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"notice",
+			"calcpoints",
+			"@",
+			"@/",
+			"addfoundword",
 			"shake",
 			"shuffle",
 			"wordinp",
@@ -336,37 +327,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 707,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -419,6 +381,26 @@
 		"selected_items":
 		[
 			[
+				"readme",
+				"README.md"
+			],
+			[
+				"base.",
+				"src/styles/base.css"
+			],
+			[
+				"store index.js",
+				"src/store/index.js"
+			],
+			[
+				"utils index",
+				"node_modules/utils-merge/index.js"
+			],
+			[
+				"store index",
+				"src/store/index.js"
+			],
+			[
 				"base",
 				"src/styles/base.css"
 			],
@@ -441,10 +423,6 @@
 			[
 				"hivebutt",
 				"src/components/HiveButton.vue"
-			],
-			[
-				"store index.js",
-				"src/store/index.js"
 			],
 			[
 				"hiveactions",
@@ -511,10 +489,6 @@
 				"src/store.js"
 			],
 			[
-				"readme",
-				"README.md"
-			],
-			[
 				"popover.v",
 				"src/components/Popover.vue"
 			],
@@ -537,10 +511,6 @@
 			[
 				"spectrum",
 				"src/components/Spectrum/Spectrum.vue"
-			],
-			[
-				"base.",
-				"src/styles/base.css"
 			],
 			[
 				"base.css",
@@ -921,14 +891,6 @@
 			[
 				"eslintrc",
 				"node_modules/babel-plugin-dynamic-import-node/.eslintrc"
-			],
-			[
-				"sectionex",
-				"src/components/SectionExport.vue"
-			],
-			[
-				"block.v",
-				"src/components/Stack/StackBlock.vue"
 			]
 		],
 		"width": 0.0

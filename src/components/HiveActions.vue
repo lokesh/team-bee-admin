@@ -1,19 +1,19 @@
 <template>
-  <div class="row">
+  <div class="button-row">
     <hive-button
-      class="button"
+      class="button-row-button"
       @click="onDelete"
     >
       Delete
     </hive-button>
     <hive-button
-      class="button"
+      class="button-row-button"
       @click="onShuffle"
     >
       Shuffle
     </hive-button>
     <hive-button
-      class="button"
+      class="button-row-button"
       @click="onEnter"
     >
       Enter
@@ -47,18 +47,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-.button {
-  margin-right: 24px;
-}
-
-.button:last-of-type {
-  margin-right: 0;
-}
-</style>

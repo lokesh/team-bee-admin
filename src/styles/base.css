@@ -64,3 +64,39 @@ input {
 p {
   margin-top: 0;
 }
+
+button {
+  padding: 12px 16px;
+  font-size: 16px;
+  border: var(--border);
+  border-radius: 36px;
+  background: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  background: var(--color-muted);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:focus-visible {
+  border-color: var(--color-focus);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+}
+
+.button-row-button {
+  margin-right: 24px;
+}
+
+.button-row-button:last-of-type {
+  margin-right: 0;
+}
