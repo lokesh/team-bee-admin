@@ -2,11 +2,9 @@
 
 ## To-do
 
-- [x] Delete, shuffle, enter buttons
-- [x] On submit of a good word, show notice that animates up with points (+4)
-- [ ] Test Heroku deploy of Vue app hitting API
+- [ ] Design update: Mobile layout, puzzle switcher, multi-user, hints
 - [ ] Support puzzle switching, persist puzzle data
-- [ ] Multiplayer design
+--
 - [ ] Multiplayer implementation
 - [ ] Mobile layout
 - [ ] On key press, trigger animation on cell
