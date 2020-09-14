@@ -11,6 +11,9 @@
   --color-error: #FB2E2E;
   --color-bg-dark: #333;
 
+  --color-lokesh: #54B3F8;
+  --color-nitya: #F8CA3D;
+  --color-vandana: #F854B6;
 
   --color-focus: #3d88f8;
 
@@ -42,6 +45,18 @@
 
   /* Transitions */
   --transition: 0.3s;
+
+  /* ------ */
+  /* Layout */
+  /* ------ */
+
+  --gutter: 12px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: 24px;
+  }
 }
 
 
@@ -53,6 +68,9 @@ body {
   margin: 0;
   padding: 0;
   color: var(--color);
+  
+  /* Disable iOS double tap zoom */
+  touch-action: pan-y;
 }
 
 body,

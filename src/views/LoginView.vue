@@ -4,19 +4,19 @@
 
     <div class="button-row">
       <button
-        class="button-row-button"
-        @click="setUser('Mom')"
+        class="button-row-button button-vandana"
+        @click="setUser('Vandana')"
       >
         Mom
       </button>
       <button
-        class="button-row-button"
+        class="button-row-button button-nitya"
         @click="setUser('Nitya')"
       >
         Nitya
       </button>
       <button
-        class="button-row-button"
+        class="button-row-button button-lokesh"
         @click="setUser('Lokesh')"
       >
         Lokesh
@@ -45,4 +45,16 @@ export default {
 .login {
   text-align: center;
 }
+
+/*.button-nitya {
+  background: var(--color-nitya);
+}
+
+.button-lokesh {
+  background: var(--color-lokesh);
+}
+
+.button-vandana {
+  background: var(--color-vandana);
+}*/
 </style>

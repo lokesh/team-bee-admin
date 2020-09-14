@@ -21,3 +21,10 @@ export default {
 <style>
 @import "./styles/base.css";
 </style>
+
+<style scoped>
+.app {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+</style>

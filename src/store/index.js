@@ -7,12 +7,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    input: '',
-    answers: ["habitual","halibut","abut","alibi","alit","atilt","baba","baht","bail","bait","ball","bath","bathtub","bilabial","blab","blah","blat","bubba","habit","habitat","hail","halal","hall","halt","hath","hatha","haul","hiatal","hula","labia","labial","lath","luau","tabla","tail","tali","tall","taut","that","tibia","tibial","tuba"],
-    foundWords: [],
-    centerLetter: 'a',
-    outerLetters: ["b","h","i","l","t","u"],
+    // Puzzle
+    puzzleId: 1,
+    puzzleName: 'September 13, 2020',
+    centerLetter: 't',
+    outerLetters: ["v","u","r","i","l","a"],
+    answers: ["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],
+
+    // User
     user: null, // { id: 1, name: 'Rowan' }
+
+    // Progress
+    foundWords: ["altar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],    
+
+    // UI
+    input: '',
   },
 
   mutations: {
@@ -30,18 +39,14 @@ export default new Vuex.Store({
       state.input = val;
     },
     
+    // User
     setUser(state, val) {
       state.user = val;
-      if (localStorage) {
-        localStorage.setItem('user', JSON.stringify(val));
-      }
+      localStorage.setItem('user', JSON.stringify(val));
     },
-
     clearUser(state) {
       state.user = null;
-      if (localStorage) {
-        localStorage.removeItem('user');
-      }
+      localStorage.removeItem('user');
     },
 
     // Puzzle
@@ -59,6 +64,9 @@ export default new Vuex.Store({
   getters: {
     letters: (state) => [state.centerLetter, ...state.outerLetters],
     points: (state, getters) => calcPoints(state.foundWords, getters.letters),
+    pointsForGenius: (state, getters) => {
+      return Math.ceil(getters.possiblePoints * 0.9);
+    },
     possiblePoints: (state, getters) => calcPoints(state.answers, getters.letters),
   },
 

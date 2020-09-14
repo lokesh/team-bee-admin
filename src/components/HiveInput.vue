@@ -32,8 +32,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import { EventBus } from '../event-bus.js';
-import { calcPoints, isPangram } from '../utils';
+import EventBus from '@/event-bus.js';
+import { calcPoints, isPangram } from '@/utils';
 
 export default {
   name: 'HiveInput',

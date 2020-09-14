@@ -13,6 +13,10 @@
       points="0,51.96152422706631 30,0 90,0 120,51.96152422706631 90,103.92304845413263 30,103.92304845413263"
       stroke="white"
       stroke-width="7.5"
+      :class="{
+        'pressed': isPressed,
+      }"
+      @transitionend="onPressEnd"
     />
     <text
       class="letter"
@@ -26,6 +30,8 @@
 </template>
 
 <script>
+import EventBus from '@/event-bus';
+
 export default {
   name: 'HiveCell',
 
@@ -40,9 +46,34 @@ export default {
     },
   },
 
+  data() {
+    return {
+      isPressed: false,
+    };
+  },
+
+  mounted() {
+    EventBus.$on('letterKeyPress', this.onLetterKeyPress);
+  },
+
+  destroyed() {
+    EventBus.$off('letterKeyPress', this.onLetterKeyPress);
+  },
+
   methods: {
+    onLetterKeyPress(letter) {
+      if (this.letter === letter) {
+        this.isPressed = true;
+      }
+    },
+
     onClick() {
+      this.isPressed = true;
       this.$store.commit('addInputLetter', this.letter);
+    },
+
+    onPressEnd() {
+      this.isPressed = false;
     },
   },
 };
@@ -57,7 +88,7 @@ export default {
     fill 0.1s;
 }
 
-.shape:active {
+.shape.pressed {
   transform: scale(0.85);
   fill: var(--color-muted-dark);
 }
