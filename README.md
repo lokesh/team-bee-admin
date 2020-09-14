@@ -25,6 +25,51 @@
 - [ ] Update design to prevent any confusion with the original NYT game.
 - [ ] Give credit where credits are due for game design.
 
+
+## Schema & API 
+
+User
+- id Integer
+- name
+
+Puzzle
+- id
+- name
+- centerLetter
+- outerLetters
+- answers
+
+PuzzleProgress
+- puzzleId
+- userId
+- foundWords
+- hint
+- reveal
+
+
+**`GET /users`**
+Kept cached for name lookup and for the login screen.
+
+**`GET /puzzles`**
+For use in puzzle switcher.
+
+**`GET /puzzle-progress/PUZZLE_ID`**
+users array []
+  {
+    userId: Int,
+    foundWords: []
+    hint: Boolean
+    revealed: Boolean
+  }
+
+POST /puzzle-progress/PUZZLE_ID/USER_ID
+
+foundWords: []
+hint
+revealed
+
+
+
 ## Quick start
 
 ```
