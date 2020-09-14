@@ -18,6 +18,7 @@ export default new Vuex.Store({
     user: null, // { id: 1, name: 'Rowan' }
 
     // Progress
+    // foundWords: [],
     foundWords: ["altar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],    
 
     // UI

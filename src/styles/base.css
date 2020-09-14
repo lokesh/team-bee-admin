@@ -106,6 +106,22 @@ button:focus-visible {
   border-color: var(--color-focus);
 }
 
+button.text-button {
+  padding: 0;
+  color: var(--color-secondary);
+  border: 0;
+}
+
+button.text-button:hover {
+  text-decoration: underline;
+}
+
+button.text-button:active {
+  color: var(--color);
+  background: transparent;
+}
+
+
 .button-row {
   display: flex;
   justify-content: center;
