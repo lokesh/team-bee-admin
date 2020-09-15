@@ -55,6 +55,15 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 1626,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -136,28 +145,51 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/lokesh/Projects/hive-words"
+		"/Users/lokesh/Projects/hive-words",
+		"/Users/lokesh/Projects/hive-words/src",
+		"/Users/lokesh/Projects/hive-words/src/components",
+		"/Users/lokesh/Projects/hive-words/src/data",
+		"/Users/lokesh/Projects/hive-words/src/router",
+		"/Users/lokesh/Projects/hive-words/src/store",
+		"/Users/lokesh/Projects/hive-words/src/styles",
+		"/Users/lokesh/Projects/hive-words/src/utils",
+		"/Users/lokesh/Projects/hive-words/src/views"
 	],
 	"file_history":
 	[
-		"/Users/lokesh/Projects/hive-words/src/store/index.js",
 		"/Users/lokesh/Projects/hive-words/src/utils/index.js",
-		"/Users/lokesh/Projects/hive-words/README.md",
-		"/Users/lokesh/Projects/hive-words/.eslintrc.js",
-		"/Users/lokesh/Projects/hive-words/src/App.vue",
-		"/Users/lokesh/Projects/hive-words/src/components/HiveInput.vue",
-		"/Users/lokesh/Projects/hive-words/src/styles/base.css",
-		"/Users/lokesh/Projects/hive-words/node_modules/utils-merge/index.js",
-		"/Users/lokesh/Projects/hive-words/src/utils/calcPoints.js",
-		"/Users/lokesh/Projects/hive-words/package.json",
+		"/Users/lokesh/Projects/hive-words/node_modules/enhanced-resolve/lib/SyncAsyncFileSystemDecorator.js",
 		"/Users/lokesh/Projects/hive-words/src/components/Scoreboard.vue",
-		"/Users/lokesh/Projects/hive-words/babel.config.js",
+		"/Users/lokesh/Projects/hive-words/src/styles/base.css",
+		"/Users/lokesh/Projects/hive-words/src/components/SegmentedControl.vue",
+		"/Users/lokesh/Projects/hive-words/src/store/index.js",
+		"/Users/lokesh/Projects/hive-words/package.json",
+		"/Users/lokesh/Projects/hive-words/src/components/ScoreboardMini.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/GeniusBar.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/PuzzleSwitcher.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveInput.vue",
+		"/Users/lokesh/Projects/hive-words/src/App.vue",
+		"/Users/lokesh/Projects/hive-words/src/views/GameView.vue",
+		"/Users/lokesh/Projects/hive-words/README.md",
+		"/Users/lokesh/Projects/hive-words/src/data/9778.json",
+		"/Users/lokesh/Projects/hive-words/src/data/9966.json",
+		"/Users/lokesh/Projects/hive-words/src/data/9968.json",
+		"/Users/lokesh/Projects/hive-words/src/views/LoginView.vue",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveCell.vue",
 		"/Users/lokesh/Projects/hive-words/src/event-bus.js",
 		"/Users/lokesh/Projects/hive-words/src/components/HiveActions.vue",
-		"/Users/lokesh/Projects/hive-words/src/main.js",
-		"/Users/lokesh/Projects/hive-words/src/components/HiveButton.vue",
+		"/Users/lokesh/Projects/hive-words/src/router/index.js",
 		"/Users/lokesh/Projects/hive-words/src/components/Hive.vue",
-		"/Users/lokesh/Projects/hive-words/src/components/HiveCell.vue",
+		"/Users/lokesh/Projects/hive-words/public/index.html",
+		"/Users/lokesh/Projects/hive-words/src/components/HiveButton.vue",
+		"/Users/lokesh/Projects/hive-words/src/main.js",
+		"/Users/lokesh/Projects/hive-words/src/views/BoardView.vue",
+		"/Users/lokesh/Projects/hive-words/src/views/Foo.vue",
+		"/Users/lokesh/Projects/hive-words/.editorconfig",
+		"/Users/lokesh/Projects/hive-words/.eslintrc.js",
+		"/Users/lokesh/Projects/hive-words/node_modules/utils-merge/index.js",
+		"/Users/lokesh/Projects/hive-words/src/utils/calcPoints.js",
+		"/Users/lokesh/Projects/hive-words/babel.config.js",
 		"/Users/lokesh/Desktop/Cash App vs Venmo.md",
 		"/Users/lokesh/Projects/hive-words/src/components/WordInput.vue",
 		"/Users/lokesh/Projects/hive-words/node_modules/http-deceiver/.travis.yml",
@@ -252,26 +284,11 @@
 		"/Users/lokesh/Projects/colortron/package.json",
 		"/Users/lokesh/Projects/colortron/package-lock.json",
 		"/Users/lokesh/Projects/colortron/babel.config.js",
-		"/Users/lokesh/Projects/colortron/src/styles/vue-slider-component.css",
-		"/Users/lokesh/Projects/colortron/node_modules/vue-slider-component/theme/default.css",
-		"/Users/lokesh/Projects/colortron/src/assets/x.svg",
-		"/Users/lokesh/Projects/colortron/public/index.html",
-		"/Users/lokesh/Projects/colortron/src/components/PaletteSimple.vue",
-		"/Users/lokesh/Projects/colortron/PaletteSimple.vue",
-		"/Users/lokesh/Projects/colortron/Palette.vue",
-		"/Users/lokesh/Projects/colortron/SwatchSimple.vue",
-		"/Users/lokesh/Projects/colortron/Swatch.vue",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/css/main.css",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/primary.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/american-factory.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/notes/digital-gold.md",
-		"/Users/lokesh/Projects/lokesh-dhakar/src/layouts/page.njk",
-		"/Users/lokesh/Projects/lokesh-dhakar/dist/css/main.css"
+		"/Users/lokesh/Projects/colortron/src/styles/vue-slider-component.css"
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -287,6 +304,29 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ios13",
+			"height",
+			"onkey",
+			".msg",
+			"var(--rad",
+			"mom",
+			"{ eventbu",
+			"export def",
+			"eventbus",
+			"eventbus }",
+			"export def",
+			"eventbus.",
+			"eventbus",
+			"onkey",
+			"animationen",
+			"transitionend",
+			"localstora",
+			".push",
+			"<button",
+			"$store.",
+			"onkey",
+			"app",
+			"helloworld",
 			"notice",
 			"calcpoints",
 			"@",
@@ -327,8 +367,42 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								544,
+								544
+							]
+						],
+						"settings":
+						{
+							"editorconfig": true,
+							"ensure_newline_at_eof_on_save": true,
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true,
+							"trim_trailing_white_space_on_save": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -381,12 +455,88 @@
 		"selected_items":
 		[
 			[
-				"readme",
+				"readm",
 				"README.md"
+			],
+			[
+				"reamde",
+				"node_modules/enhanced-resolve/lib/SyncAsyncFileSystemDecorator.js"
+			],
+			[
+				"scorebo",
+				"src/components/Scoreboard.vue"
+			],
+			[
+				"store index.",
+				"src/store/index.js"
+			],
+			[
+				"base.c",
+				"src/styles/base.css"
+			],
+			[
+				"app.",
+				"src/App.vue"
+			],
+			[
+				"scoreb",
+				"src/components/Scoreboard.vue"
+			],
+			[
+				"switcher",
+				"src/components/PuzzleSwitcher.vue"
 			],
 			[
 				"base.",
 				"src/styles/base.css"
+			],
+			[
+				"store index",
+				"src/store/index.js"
+			],
+			[
+				"login.vue",
+				"src/views/LoginView.vue"
+			],
+			[
+				"eventbu",
+				"src/event-bus.js"
+			],
+			[
+				"eventbus",
+				"src/event-bus.js"
+			],
+			[
+				"game.",
+				"src/views/GameView.vue"
+			],
+			[
+				"hive",
+				"src/components/Hive.vue"
+			],
+			[
+				"readme",
+				"README.md"
+			],
+			[
+				"hivecell",
+				"src/components/HiveCell.vue"
+			],
+			[
+				"index.ht",
+				"public/index.html"
+			],
+			[
+				"base",
+				"src/styles/base.css"
+			],
+			[
+				"login.v",
+				"src/views/LoginView.vue"
+			],
+			[
+				"router inde",
+				"src/router/index.js"
 			],
 			[
 				"store index.js",
@@ -397,20 +547,8 @@
 				"node_modules/utils-merge/index.js"
 			],
 			[
-				"store index",
-				"src/store/index.js"
-			],
-			[
-				"base",
-				"src/styles/base.css"
-			],
-			[
 				"hiveinpu",
 				"src/components/HiveInput.vue"
-			],
-			[
-				"scorebo",
-				"src/components/Scoreboard.vue"
 			],
 			[
 				"hiveinput",
@@ -433,18 +571,6 @@
 				"src/components/WordInput.vue"
 			],
 			[
-				"base.c",
-				"src/styles/base.css"
-			],
-			[
-				"store index.",
-				"src/store/index.js"
-			],
-			[
-				"hive",
-				"src/components/HiveCell.vue"
-			],
-			[
 				"input.",
 				"src/components/WordInput.vue"
 			],
@@ -459,10 +585,6 @@
 			[
 				"hive.vi",
 				"node_modules/http-deceiver/.travis.yml"
-			],
-			[
-				"hivecell",
-				"src/components/HiveCell.vue"
 			],
 			[
 				"packa",
@@ -583,10 +705,6 @@
 			[
 				"menu",
 				"src/views/MenuBar.vue"
-			],
-			[
-				"app.",
-				"src/App.vue"
 			],
 			[
 				"stackblo",
@@ -847,50 +965,6 @@
 			[
 				"varia",
 				"node_modules/cross-env/src/variable.js"
-			],
-			[
-				"var.",
-				"node_modules/css-tree/lib/syntax/function/var.js"
-			],
-			[
-				"modal.v",
-				"src/components/Modal/Modal.vue"
-			],
-			[
-				"modalba",
-				"src/components/Modal/ModalBackdrop.vue"
-			],
-			[
-				"color stacks",
-				"src/views/ColorStacks.vue"
-			],
-			[
-				"grayssta",
-				"src/views/GraysStack.vue"
-			],
-			[
-				"sectiongray",
-				"src/views/SectionGrays.vue"
-			],
-			[
-				"modalex",
-				"src/components/ModalExport.vue"
-			],
-			[
-				"stackbloc",
-				"src/components/Stack/StackBlock.vue"
-			],
-			[
-				"graysta",
-				"src/components/GraysStack.vue"
-			],
-			[
-				"vue slide css",
-				"src/styles/vue-slider-component.css"
-			],
-			[
-				"eslintrc",
-				"node_modules/babel-plugin-dynamic-import-node/.eslintrc"
 			]
 		],
 		"width": 0.0

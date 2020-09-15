@@ -8,6 +8,7 @@
 - [ ] Add limit to word length
 
 **Data**
+- [ ] Test fetching users and display on login
 - [ ] Add basic milestones (genius, et al)
 - [ ] Support puzzle switching, persist puzzle data
 
@@ -28,32 +29,20 @@
 
 ## Schema & API 
 
-User
-- id Integer
-- name
-
-Puzzle
-- id
-- name
-- centerLetter
-- outerLetters
-- answers
-
-PuzzleProgress
-- puzzleId
-- userId
-- foundWords
-- hint
-- reveal
+GET    /users     index 
+GET    /user/:id  show
+POST   /users     create
+PUT    /users/:id update
+DELETE /users/:id destroy
 
 
-**`GET /users`**
+**`GET /users`** index
 Kept cached for name lookup and for the login screen.
 
-**`GET /puzzles`**
+**`GET /puzzles`** index
 For use in puzzle switcher.
 
-**`GET /puzzle-progress/PUZZLE_ID`**
+**`GET /puzzle-progress/PUZZLE_ID`** show
 users array []
   {
     userId: Int,
@@ -62,8 +51,9 @@ users array []
     revealed: Boolean
   }
 
-POST /puzzle-progress/PUZZLE_ID/USER_ID
+**`POST /puzzle-progress/PUZZLE_ID/USER_ID`** create
 
+**`PUT /puzzle-progress/PUZZLE_ID/USER_ID`** update
 foundWords: []
 hint
 revealed
