@@ -29,12 +29,40 @@
 
 ## Schema & API 
 
+### PostgresSQL tables
+
+**users**
+- id: Integer (primary key, serial)
+- name: String
+
+**puzzles**
+- id: Integer (primary key, serial)
+- name: String
+- config: JSON
+
+config
+- centerLetter: String
+- outerLetters: [String]
+- answers: [String]
+
+**user_puzzle**
+- id: Integer (primary key, serial)
+- puzzleId: Integer (foreign key)
+- userId: Integer (foreign key)
+- progress: JSON
+
+progress
+- foundWords: [String]
+- hint: Boolean
+- revealed: Boolean
+
+### Rest-like API
+
 GET    /users     index 
 GET    /user/:id  show
 POST   /users     create
 PUT    /users/:id update
 DELETE /users/:id destroy
-
 
 **`GET /users`** index
 Kept cached for name lookup and for the login screen.
@@ -43,21 +71,12 @@ Kept cached for name lookup and for the login screen.
 For use in puzzle switcher.
 
 **`GET /puzzle-progress/PUZZLE_ID`** show
-users array []
-  {
-    userId: Int,
-    foundWords: []
-    hint: Boolean
-    revealed: Boolean
-  }
 
 **`POST /puzzle-progress/PUZZLE_ID/USER_ID`** create
+progress JSON
 
 **`PUT /puzzle-progress/PUZZLE_ID/USER_ID`** update
-foundWords: []
-hint
-revealed
-
+progress JSON
 
 
 ## Quick start
