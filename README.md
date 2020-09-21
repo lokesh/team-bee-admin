@@ -10,13 +10,14 @@ npm run lint
 
 ## To-do
 
-**Env** 
+**Env**
 - [ ] Flag for local DB
 
 **Design**
 - [x] On key press, animate active
 - [ ] Design update: Mobile layout, puzzle switcher, multi-user, hints
 - [ ] Add limit to word length
+- [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
 
 **Data**
 - [ ] Test fetching users and display on login
@@ -38,25 +39,60 @@ npm run lint
 - [ ] Give credit where credits are due for game design.
 
 
-## API 
+## Brainstorming
+
+Localstorage:
+User Id
+
+### 1. Is user set?
+No -> Forward to login screen.
+TODO: Router guard
+
+Once user chosen, update in store:
+user: id, name
+
+### 2. Load data upfront
+
+- Load user list
+- Load puzzle list
+
+users: [id, name]
+puzzles: [id, name, date]
+
+- Set current puzzle as puzzle who has latest date that is not in future
+
+puzzle: id, name, date, config, userProgress
+
+
+
+// getters
+userProgress
+
+
+
+
+## API
 
 ### Quick reference
 
+```
+GET    /users
+GET    /users/:id
+GET    /users/:id/puzzles/:id
+PUT    /users/:id/puzzles/:id // Not implemented
+GET    /puzzles
+POST   /puzzles
+GET    /puzzles/:id
+```
 
 ```
-GET    /users                list users
----
-XGET    /puzzles              listPuzzles
-XPOST   /puzzles              createPuzzle
-GET    /puzzles/:id          showPuzzle
-# GET  /puzzles/:id/progress show progress
----
-GET    /progress/:id
-PUT    /progress/:id
-GET    /progress?puzzle=:id
-# GET    /progress?user=:id
-GET    /progress?user=:id&puzzle=:id
----
+// API graveyard
+GET /progress/:id
+PUT /progress/:id
+GET /progress?puzzle=:id
+GET /progress?user=:id
+GET /progress?user=:id&puzzle=:id
+
 ```
 
 ## PostgresSQL tables
