@@ -1,6 +1,17 @@
 # Hive Words
 
+## Quick start
+
+```
+npm run serve // Compiles and hot-reloads for development
+npm run build // Compiles and minifies for production
+npm run lint
+```
+
 ## To-do
+
+**Env** 
+- [ ] Flag for local DB
 
 **Design**
 - [x] On key press, animate active
@@ -27,9 +38,28 @@
 - [ ] Give credit where credits are due for game design.
 
 
-## Schema & API 
+## API 
 
-### PostgresSQL tables
+### Quick reference
+
+
+```
+GET    /users                list users
+---
+XGET    /puzzles              listPuzzles
+XPOST   /puzzles              createPuzzle
+GET    /puzzles/:id          showPuzzle
+# GET  /puzzles/:id/progress show progress
+---
+GET    /progress/:id
+PUT    /progress/:id
+GET    /progress?puzzle=:id
+# GET    /progress?user=:id
+GET    /progress?user=:id&puzzle=:id
+---
+```
+
+## PostgresSQL tables
 
 **users**
 - id: Integer (primary key, serial)
@@ -56,35 +86,6 @@ progress
 - hint: Boolean
 - revealed: Boolean
 
-### Rest-like API
-
-GET    /users     index 
-GET    /user/:id  show
-POST   /users     create
-PUT    /users/:id update
-DELETE /users/:id destroy
-
-**`GET /users`** index
-Kept cached for name lookup and for the login screen.
-
-**`GET /puzzles`** index
-For use in puzzle switcher.
-
-**`GET /puzzle-progress/PUZZLE_ID`** show
-
-**`POST /puzzle-progress/PUZZLE_ID/USER_ID`** create
-progress JSON
-
-**`PUT /puzzle-progress/PUZZLE_ID/USER_ID`** update
-progress JSON
-
-
-## Quick start
-
-```
-npm run serve // Compiles and hot-reloads for development
-npm run build // Compiles and minifies for production
-npm run lint
 ```
 
 ### Customize configuration

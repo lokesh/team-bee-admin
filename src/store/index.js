@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import shuffle from 'lodash.shuffle';
-import { calcPoints } from '../utils';
+import { calcPoints } from '@/utils';
 
 Vue.use(Vuex)
 
