@@ -21,6 +21,7 @@ npm run lint
 
 **Data**
 - [ ] Test fetching users and display on login
+- [ ] On init, sort puzzle list by date and load most recent
 - [ ] Add basic milestones (genius, et al)
 - [ ] Support puzzle switching, persist puzzle data
 
@@ -38,42 +39,9 @@ npm run lint
 - [ ] Update design to prevent any confusion with the original NYT game.
 - [ ] Give credit where credits are due for game design.
 
+## Architecture
 
-## Brainstorming
-
-Localstorage:
-User Id
-
-### 1. Is user set?
-No -> Forward to login screen.
-TODO: Router guard
-
-Once user chosen, update in store:
-user: id, name
-
-### 2. Load data upfront
-
-- Load user list
-- Load puzzle list
-
-users: [id, name]
-puzzles: [id, name, date]
-
-- Set current puzzle as puzzle who has latest date that is not in future
-
-puzzle: id, name, date, config, userProgress
-
-
-
-// getters
-userProgress
-
-
-
-
-## API
-
-### Quick reference
+### API
 
 ```
 GET    /users
@@ -95,34 +63,23 @@ GET /progress?user=:id&puzzle=:id
 
 ```
 
-## PostgresSQL tables
+### Data init and bootstrapping
 
-**users**
-- id: Integer (primary key, serial)
-- name: String
+- **User**: We store the current user in localStorage and store it on app start up. If we don't find it, we have a router guard that will route them to Login screen.
+- **Users**: Loaded on app creation.
+- **Puzzles**: Loaded on app creation.
 
-**puzzles**
-- id: Integer (primary key, serial)
-- name: String
-- config: JSON
 
-config
-- centerLetter: String
-- outerLetters: [String]
-- answers: [String]
+App.js - created...
 
-**user_puzzle**
-- id: Integer (primary key, serial)
-- puzzleId: Integer (foreign key)
-- userId: Integer (foreign key)
-- progress: JSON
+- Load user list
+- Load puzzle list
 
-progress
-- foundWords: [String]
-- hint: Boolean
-- revealed: Boolean
+users: [id, name]
+puzzles: [id, name, date]
 
-```
+- Set current puzzle as puzzle who has latest date that is not in future
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+puzzle: id, name, date, config, userProgress
+
+

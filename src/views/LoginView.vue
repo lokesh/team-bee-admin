@@ -16,32 +16,29 @@
       </button>
 
       <button
+        v-for="user in users"
+        :key="user.id"
         class="button-row-button button-vandana"
-        @click="setUser('Vandana')"
+        @click="setUser(user.id)"
       >
-        Mom
-      </button>
-      <button
-        class="button-row-button button-nitya"
-        @click="setUser('Nitya')"
-      >
-        Nitya
-      </button>
-      <button
-        class="button-row-button button-lokesh"
-        @click="setUser('Lokesh')"
-      >
-        Lokesh
+        {{ user.name }}
       </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import axios from '@/axios';
 
 export default {
   name: 'LoginView',
+
+  computed: {
+    ...mapState([
+      'users',
+    ]),
+  },
 
   methods: {
     async getPuzzle() {
@@ -67,19 +64,11 @@ export default {
       } catch (error) {
         console.error(error);
       }
-      // console.log(axios);
-
-      
-      // // const resp = await fetch('https://node-express-pg.herokuapp.com/v1/messages');
-      // const data = await resp.json();
-      // console.log(resp.data);
     },
 
-    setUser(user) {
-      this.$store.commit('setUser', {
-        name: user,
-        id: 2,
-      });
+    setUser(id) {
+      const user = this.users.find(user => user.id === id);
+      this.$store.commit('setUser', user);
       this.$router.push('game')
     },
   },
@@ -90,16 +79,4 @@ export default {
 .login {
   text-align: center;
 }
-
-/*.button-nitya {
-  background: var(--color-nitya);
-}
-
-.button-lokesh {
-  background: var(--color-lokesh);
-}
-
-.button-vandana {
-  background: var(--color-vandana);
-}*/
 </style>

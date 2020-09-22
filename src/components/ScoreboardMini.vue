@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import GeniusBar from '@/components/GeniusBar';
 
 export default {
@@ -25,12 +25,13 @@ export default {
 
   computed: {
     ...mapGetters([
+      'foundWords',
       'points',
       'pointsForGenius',
     ]),
-    ...mapState([
-      'foundWords',
-    ]),
+    // ...mapState([
+    //   'foundWords',
+    // ]),
   },
 }
 </script>
