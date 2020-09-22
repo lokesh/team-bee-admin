@@ -1,6 +1,10 @@
 <template>
   <div class="app">
-    <router-view></router-view>
+    <router-view
+      v-if="!loading"
+    >
+
+    </router-view>
   </div>
 </template>
 
@@ -10,7 +14,14 @@ import axios from '@/axios';
 export default {
   name: 'App',
 
-  async created() {
+  data() {
+    return {
+      loading: true,
+    };
+  },
+
+  // TODO: move API calls to Vuex actions
+  async beforeCreate() {
     // Check if user set
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -29,10 +40,16 @@ export default {
       this.$store.commit('setPuzzles', puzzles.data);
 
       // TODO: sort by date and pick most recent
-      this.$store.commit('setPuzzle', puzzles.data[0]);
+      const puzzle = puzzles.data[0];
+      const progress = await axios.get(`/puzzles/${puzzle.id}/users`);
+      console.log(progress.data);
+      this.$store.dispatch('loadPuzzle', puzzle);
+      this.$store.dispatch('loadProgress', progress.data)
 
+      this.loading = false;
     } catch (error) {
       console.log(error)
+      this.loading = false;
     }
 
   }

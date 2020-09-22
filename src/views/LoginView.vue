@@ -12,7 +12,13 @@
       <button
         @click="createPuzzle"
       >
-        Create
+        Create Puzzle
+      </button>
+
+      <button
+        @click="createProgress"
+      >
+        Create Progress
       </button>
 
       <button
@@ -47,6 +53,23 @@ export default {
         console.log(resp);
       } catch (error) {
         console.log(error)
+      }
+    },
+
+    async createProgress() {
+      // 2 2
+      const progress = {
+        "revealed": true,
+        "teamMode": true,
+        "foundWords":["altar","atrial","avatar"],
+      };
+      try {
+        const resp = await axios.post('/puzzles/2/users/2', {
+          progress: JSON.stringify(progress),
+        });
+        console.log(resp);
+      } catch (error) {
+        console.error(error);
       }
     },
     async createPuzzle() {

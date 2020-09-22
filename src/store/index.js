@@ -13,23 +13,29 @@ function userProgress(state, val) {
   return false;
 }
 
+// Convenience function for mutations to reduce boilerplate
+const set = key => (state, val) => {
+  state[key] = val;
+};
+
 export default new Vuex.Store({
   state: {
-    user: null, // id, name,
     users: null, // [id, name]
-
-    puzzle: null, //id, name, date, config, userProgress
     puzzles: null, // [id, name, date]
+
+    // User
+    user: null, // id, name,
 
     // Puzzle
     puzzleId: 1,
     puzzleName: 'September 13, 2020',
-    centerLetter: 't',
-    outerLetters: ["v","u","r","i","l","a"],
-    answers: ["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],
+    centerLetter: '',
+    outerLetters: [],
+    answers: [],
 
     // Progress
-    foundWords: [],
+    progress: {},
+    // foundWords: [],
     // foundWords: ["altar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],
 
     // UI
@@ -65,27 +71,46 @@ export default new Vuex.Store({
     },
 
     // Puzzles
-    setPuzzle(state, val) {
-      state.puzzle = val;
-    },
+    setPuzzleId: set('puzzleId'),
+    setPuzzleName: set('puzzleName'),
+    setCenterLetter: set('centerLetter'),
+    setOuterLetters: set('outerLetters'),
+    setAnswers: set('answers'),
+
     setPuzzles(state, val) {
       state.puzzles = val;
     },
+
+    // Progress
+    setProgress(state, val) {
+      console.log('set progress');
+      console.log('new', Object.assign({}, val));
+      state.progress = Object.assign({}, val);
+    },
+
     shuffleOuterLetters(state) {
         state.outerLetters = shuffle(state.outerLetters);
     },
 
+
+
     // Scoreboard
-    addFoundWord(state, val) {
-      state.foundWords.push(val);
-      state.foundWords.sort();
+    addFoundWord() {
+      // state.foundWords.push(val);
+      // state.foundWords.sort();
     },
   },
 
   getters: {
     foundWords: (state) => {
-      const found = userProgress(state, 'foundWords');
-      return found ? found : [];
+      if (state.progress && state.progress[state.user.id] && state.progress[state.user.id].foundWords) {
+        return state.progress[state.user.id].foundWords;
+      } else {
+        return [];
+      }
+      // return state.progress[state.user.id].foundWords || [];
+      // const found = userProgress(state, 'foundWords');
+      // return found ? found : [];
     },
     hint: (state) => userProgress(state, 'hint'),
     revealed: (state) => userProgress(state, 'revealed'),
@@ -93,11 +118,34 @@ export default new Vuex.Store({
 
     // UI
     letters: (state) => [state.centerLetter, ...state.outerLetters],
-    points: (state, getters) => calcPoints(state.foundWords, getters.letters),
+    points: (state, getters) => calcPoints(getters.foundWords, getters.letters),
     pointsForGenius: (state, getters) => {
       return Math.ceil(getters.possiblePoints * 0.9);
     },
     possiblePoints: (state, getters) => calcPoints(state.answers, getters.letters),
   },
 
+  actions: {
+    addFoundWord: ({ state }, word) => {
+      // Hit API
+      console.log(word);
+      state.progress[state.user.id].foundWords.push(word);
+    },
+
+    loadProgress: ({ commit }, data) => {
+      let progress = {};
+      data.forEach(item => {
+        progress[item.userid] = item.progress;
+      })
+      commit('setProgress', progress);
+    },
+
+    loadPuzzle: ({ commit }, puzzle) => {
+      commit('setPuzzleId', puzzle.id);
+      commit('setPuzzleName', puzzle.name);
+      commit('setCenterLetter', puzzle.config.centerLetter);
+      commit('setOuterLetters', puzzle.config.outerLetters);
+      commit('setAnswers', puzzle.config.answers);
+    },
+  },
 })

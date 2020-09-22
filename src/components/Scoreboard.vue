@@ -70,12 +70,12 @@ export default {
 
   computed: {
     ...mapGetters([
+      'foundWords',
       'points',
       'possiblePoints',
     ]),
     ...mapState([
       'answers',
-      'foundWords',
     ]),
   },
 }

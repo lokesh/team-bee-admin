@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'PuzzleSwitcher',
@@ -16,9 +16,6 @@ export default {
     ...mapGetters([
       'points',
       'pointsForGenius',
-    ]),
-    ...mapState([
-      'foundWords',
     ]),
   },
 }

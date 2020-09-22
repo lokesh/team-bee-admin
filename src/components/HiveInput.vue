@@ -1,5 +1,7 @@
 <template>
   <div class="wrapper">
+    user: {{user.id}}<br />
+    progress: {{ progress }}
     <div
       ref="notice"
       class="notice"
@@ -12,7 +14,7 @@
       class="input"
       @animationend="onShakeEnd"
     >
-      
+
       <span
         v-for="(letter, i) in letters"
         :key="i"
@@ -31,7 +33,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import EventBus from '@/event-bus.js';
 import { calcPoints, isPangram } from '@/utils';
 
@@ -47,17 +49,21 @@ export default {
 
   computed: {
     ...mapState([
+      'progress',
       'answers',
       'centerLetter',
-      'foundWords',
       'input',
       'outerLetters',
+      'user',
+    ]),
+    ...mapGetters([
+      'foundWords',
     ]),
 
     letters() {
       return this.input.split('');
     },
-  }, 
+  },
 
   mounted() {
     document.addEventListener('keydown', this.onKey);
@@ -71,12 +77,12 @@ export default {
 
   methods: {
     onKey(e) {
-      if (e.keyCode !== 13) return; 
-      
+      if (e.keyCode !== 13) return;
+
       // Enter pressed
       this.submit();
     },
-    
+
     notice(str) {
       this.noticeMsg = str;
       this.$refs.notice.classList.add('notice--visible');
@@ -93,7 +99,7 @@ export default {
 
     shake() {
       this.$refs.input.classList.add('input--error');
-    }, 
+    },
 
     submit() {
       // Used a wrong letter
@@ -103,32 +109,35 @@ export default {
         ) {
         this.notice('Wrong letters');
         this.shake();
-      
+
       } else if (this.input.length < 4) {
         // Too short
         this.notice('Too short');
         this.shake();
-      
-      } else if (!this.input.includes(this.centerLetter)) { 
+
+      } else if (!this.input.includes(this.centerLetter)) {
         // Missing center letter
         this.notice('Missing center letter');
-        this.shake(); 
-  
-      } else if (this.foundWords.includes(this.input)) {     
+        this.shake();
+
+      } else if (this.foundWords.includes(this.input)) {
         // Already found
         this.notice('Already found');
         this.shake();
-      
+
       } else if (!this.answers.includes(this.input)) {
         // Not in word list
         this.notice('Not in word list');
-        this.shake(); 
-      
-      } else {     
+        this.shake();
+
+      } else {
         // Good!
         let points = calcPoints([this.input]);
         let str = isPangram(this.input) ? 'Pangram! ' : '';
         this.notice(`${str} +${points}`);
+
+        this.$store.dispatch('addFoundWord', this.input);
+
         this.$store.commit('addFoundWord', this.input);
         this.$store.commit('clearInput');
       }

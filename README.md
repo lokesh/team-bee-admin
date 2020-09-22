@@ -46,21 +46,12 @@ npm run lint
 ```
 GET    /users
 GET    /users/:id
-GET    /users/:id/puzzles/:id
-PUT    /users/:id/puzzles/:id // Not implemented
 GET    /puzzles
 POST   /puzzles
 GET    /puzzles/:id
-```
-
-```
-// API graveyard
-GET /progress/:id
-PUT /progress/:id
-GET /progress?puzzle=:id
-GET /progress?user=:id
-GET /progress?user=:id&puzzle=:id
-
+GET    /puzzles/:id/users
+GET    /puzzles/:id/users/:userId
+PUT    /puzzles/:id/users/:userId
 ```
 
 ### Data init and bootstrapping
@@ -82,4 +73,8 @@ puzzles: [id, name, date]
 
 puzzle: id, name, date, config, userProgress
 
+### For next time
 
+- User mgmt
+- API auth
+- Polling for DB writes?
