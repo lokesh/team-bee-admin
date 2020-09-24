@@ -18,6 +18,44 @@ const set = key => (state, val) => {
   state[key] = val;
 };
 
+// input: '{v,r,t}''
+// output: ['v','r','t']
+const parseCharArray = (str) => str.replace(/[{}]/g, "").split(',');
+
+/*
+STATE
+users: {
+  1: {...}
+  2: {...}
+},
+
+puzzles: {
+  1: {...}
+  2: {...}
+},
+
+progress: {
+  1: {...}
+  2: {...}
+},
+
+// User ids
+user: 1
+team: [ 2, 3 ]
+
+GETTERS
+
+foundWords: find state.user in progress look up foundwords
+teamFoundWords:
+
+ACTIONS
+
+addWord:
+Update appropriate progress value obj and do PUT
+
+
+ */
+
 export default new Vuex.Store({
   state: {
     users: null, // [id, name]
@@ -143,9 +181,9 @@ export default new Vuex.Store({
     loadPuzzle: ({ commit }, puzzle) => {
       commit('setPuzzleId', puzzle.id);
       commit('setPuzzleName', puzzle.name);
-      commit('setCenterLetter', puzzle.config.centerLetter);
-      commit('setOuterLetters', puzzle.config.outerLetters);
-      commit('setAnswers', puzzle.config.answers);
+      commit('setCenterLetter', puzzle.center_letter);
+      commit('setOuterLetters', parseCharArray(puzzle.outer_letters));
+      commit('setAnswers', puzzle.answers);
     },
   },
 })

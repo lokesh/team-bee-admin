@@ -73,15 +73,17 @@ export default {
       }
     },
     async createPuzzle() {
-      const puzzle = {
-        "centerLetter":"t",
-        "outerLetters":["v","i","r","u","a","l"],
-        "answers":["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"]
-      };
+      // const puzzle = {
+      //   "
+      //   "outerLetters":["v","i","r","u","a","l"],
+      //   "answers":["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"]
+      // };
       try {
         const resp = await axios.post('/puzzles', {
           name: "9968",
-          config: JSON.stringify(puzzle),
+          centerLetter: "t",
+          outerLetters:["v","i","r","u","a","l"],
+          answers:["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],
         });
         console.log(resp);
       } catch (error) {

@@ -41,10 +41,10 @@ export default {
 
       // TODO: sort by date and pick most recent
       const puzzle = puzzles.data[0];
-      const progress = await axios.get(`/puzzles/${puzzle.id}/users`);
-      console.log(progress.data);
+      // const progress = await axios.get(`/puzzles/${puzzle.id}/users`);
+      // console.log(progress.data);
       this.$store.dispatch('loadPuzzle', puzzle);
-      this.$store.dispatch('loadProgress', progress.data)
+      // this.$store.dispatch('loadProgress', progress.data)
 
       this.loading = false;
     } catch (error) {

@@ -75,6 +75,7 @@ puzzle: id, name, date, config, userProgress
 
 ### For next time
 
+- **PostgreSQL**: I spent way to much time fighting postgres. It was challenging to figure out things that should have been easy such as picking out the right data types and setting proper defaults (e.g. '{}'::character varying[] to set a default empty varchar array). The docs are bad.
 - User mgmt
 - API auth
 - Polling for DB writes?
