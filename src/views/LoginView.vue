@@ -4,28 +4,17 @@
 
     <div class="button-row">
       <button
-        @click="getPuzzle"
-      >
-        Get
-      </button>
-
-      <button
+        v-if="false"
         @click="createPuzzle"
       >
         Create Puzzle
       </button>
 
       <button
-        @click="createProgress"
-      >
-        Create Progress
-      </button>
-
-      <button
         v-for="user in users"
         :key="user.id"
         class="button-row-button button-vandana"
-        @click="setUser(user.id)"
+        @click="login(user.id)"
       >
         {{ user.name }}
       </button>
@@ -47,31 +36,6 @@ export default {
   },
 
   methods: {
-    async getPuzzle() {
-      try {
-        const resp = await axios.get('/puzzles/2');
-        console.log(resp);
-      } catch (error) {
-        console.log(error)
-      }
-    },
-
-    async createProgress() {
-      // 2 2
-      const progress = {
-        "revealed": true,
-        "teamMode": true,
-        "foundWords":["altar","atrial","avatar"],
-      };
-      try {
-        const resp = await axios.post('/puzzles/2/users/2', {
-          progress: JSON.stringify(progress),
-        });
-        console.log(resp);
-      } catch (error) {
-        console.error(error);
-      }
-    },
     async createPuzzle() {
       // const puzzle = {
       //   "
@@ -91,9 +55,9 @@ export default {
       }
     },
 
-    setUser(id) {
-      const user = this.users.find(user => user.id === id);
-      this.$store.commit('setUser', user);
+    login(id) {
+      // const user = this.users.find(user => user.id === id);
+      this.$store.commit('setUserId', id);
       this.$router.push('game')
     },
   },

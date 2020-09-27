@@ -1,13 +1,13 @@
 <template>
   <div class="hive">
     <hive-cell
-      v-for="(letter, i) in outerLetters"
+      v-for="(letter, i) in puzzle.outer_letters"
       :key="i"
       :letter="letter"
       class="cell"
     />
     <hive-cell
-      :letter="centerLetter"
+      :letter="puzzle.center_letter"
       center
       class="cell"
     />
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import HiveCell from './HiveCell.vue';
 
 export default {
@@ -26,11 +26,10 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'centerLetter',
-      'outerLetters',
+    ...mapGetters([
+      'puzzle',
     ]),
-  }, 
+  },
 }
 
 </script>
@@ -47,7 +46,7 @@ export default {
   position: absolute;
   top: calc(100% / 3);
   left: 30%;
-  
+
   /* Size it */
   width: 40%;
   height: calc(100% / 3);

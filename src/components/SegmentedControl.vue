@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
     name: 'SegmentedControl',
 
@@ -27,17 +25,6 @@ export default {
         type: Array,
         required: true,
       },
-    },
-
-    computed: {
-      ...mapGetters([
-        'points',
-        'possiblePoints',
-      ]),
-
-      percentComplete() {
-        return (this.points / this.possiblePoints).toFixed(2);
-      }
     },
 }
 </script>
@@ -63,5 +50,4 @@ export default {
 .option.active {
   background: white;
 }
-
 </style>

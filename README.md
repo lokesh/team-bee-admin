@@ -1,3 +1,15 @@
+It took a couple tries, but I'm happy with the db schema and the Vuex store organization. Write down some of the issues I ran into in the two prev iterations.
+
+
+1. Prefer initializing your store's initial state with all desired fields upfront.
+2. When adding new properties to an Object, you should either:
+* Use Vue.set(obj, 'newProp', 123), or
+* Replace that Object with a fresh one. For example, using the object spread syntax
+ we can write it like this:
+state.obj = { ...state.obj, newProp: 123 }
+
+
+
 # Hive Words
 
 ## Quick start
@@ -7,6 +19,7 @@ npm run serve // Compiles and hot-reloads for development
 npm run build // Compiles and minifies for production
 npm run lint
 ```
+
 
 ## To-do
 
@@ -51,6 +64,7 @@ POST   /puzzles
 GET    /puzzles/:id
 GET    /puzzles/:id/users
 GET    /puzzles/:id/users/:userId
+POST   /puzzles/:id/users/:userId
 PUT    /puzzles/:id/users/:userId
 ```
 
@@ -72,6 +86,17 @@ puzzles: [id, name, date]
 - Set current puzzle as puzzle who has latest date that is not in future
 
 puzzle: id, name, date, config, userProgress
+
+### Data CRUD
+
+#### Puzzles
+
+Manually enter in DB.
+
+#### Users
+
+Manually enter in DB.
+
 
 ### For next time
 

@@ -1,7 +1,5 @@
 <template>
   <div class="wrapper">
-    user: {{user.id}}<br />
-    progress: {{ progress }}
     <div
       ref="notice"
       class="notice"
@@ -16,13 +14,13 @@
     >
 
       <span
-        v-for="(letter, i) in letters"
+        v-for="(letter, i) in input.split('')"
         :key="i"
         class="letter"
         :class="{
           'letter': true,
           'letter--center': letter === centerLetter,
-          'letter--invalid': ![centerLetter, ...outerLetters].includes(letter),
+          'letter--invalid': !letters.includes(letter),
         }"
        >
         {{ letter }}
@@ -49,19 +47,23 @@ export default {
 
   computed: {
     ...mapState([
-      'progress',
-      'answers',
-      'centerLetter',
       'input',
-      'outerLetters',
-      'user',
     ]),
     ...mapGetters([
+      'user',
+      'puzzle',
+      'teamMode',
       'foundWords',
     ]),
 
+    centerLetter() {
+      return this.puzzle.center_letter;
+    },
+    outerLetters() {
+      return this.puzzle.outer_letters;
+    },
     letters() {
-      return this.input.split('');
+      return [this.centerLetter, ...this.outerLetters];
     },
   },
 
@@ -105,7 +107,7 @@ export default {
       // Used a wrong letter
       if (!this.input
           .split('')
-          .every(letter => [this.centerLetter, ...this.outerLetters].includes(letter))
+          .every(letter => this.letters.includes(letter))
         ) {
         this.notice('Wrong letters');
         this.shake();
@@ -125,7 +127,7 @@ export default {
         this.notice('Already found');
         this.shake();
 
-      } else if (!this.answers.includes(this.input)) {
+      } else if (!this.puzzle.answers.includes(this.input)) {
         // Not in word list
         this.notice('Not in word list');
         this.shake();
@@ -136,9 +138,7 @@ export default {
         let str = isPangram(this.input) ? 'Pangram! ' : '';
         this.notice(`${str} +${points}`);
 
-        this.$store.dispatch('addFoundWord', this.input);
-
-        this.$store.commit('addFoundWord', this.input);
+        this.$store.dispatch('saveFoundWord', this.input);
         this.$store.commit('clearInput');
       }
     } ,

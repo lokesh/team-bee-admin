@@ -11,6 +11,7 @@ module.exports = {
     "parser": "babel-eslint"
   },
   rules: {
-    'no-debugger': 'off'
+    'no-debugger': 'warn',
+    "no-unused-vars": "warn"
   }
 }

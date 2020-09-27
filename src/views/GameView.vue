@@ -1,16 +1,19 @@
 <template>
-  <div class="view">
-  
+  <div
+    v-if="isLoaded"
+    class="view"
+  >
+
     <div class="col-gameboard">
       <puzzle-switcher class="puzzle-switcher" />
       <scoreboard-mini class="scoreboard-mini" />
-      <hive-input class="hive-input" />    
+      <hive-input class="hive-input" />
       <div class="hive-positioner">
         <div class="hive-sizer">
           <hive />
         </div>
       </div>
-      <hive-actions class="hive-actions" />    
+      <hive-actions class="hive-actions" />
     </div>
 
     <scoreboard class="col-scoreboard" />
@@ -18,6 +21,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import has from 'lodash.has';
+import values from 'lodash.values';
 import EventBus from '@/event-bus.js';
 import Hive from '@/components/Hive.vue';
 import HiveActions from '@/components/HiveActions.vue';
@@ -28,7 +34,7 @@ import ScoreboardMini from '@/components/ScoreboardMini.vue'
 
 export default {
   name: 'GameView',
-  
+
   components: {
     Hive,
     HiveActions,
@@ -36,6 +42,54 @@ export default {
     PuzzleSwitcher,
     Scoreboard,
     ScoreboardMini,
+  },
+
+  data() {
+    return {
+      isLoaded: false,
+    };
+  },
+
+  computed: {
+    ...mapState([
+      'puzzles',
+      'puzzleProgress',
+      'puzzleId',
+      'userId'
+    ]),
+  },
+
+  async created() {
+    // TODO: Make reusable. It'll be needed when switching puzzles
+
+    // Switch to puzzle
+    // If no puzzle is active, switch to the newest.
+    let puzzleId = null;
+    if (this.puzzleId) {
+      puzzleId = this.puzzleId;
+    } else {
+      const puzzles = values(this.puzzles);
+      const puzzleCount = puzzles.length;
+      puzzleId =
+        puzzles
+          .find((puzzle, index) => puzzleCount === index + 1)
+          .id;
+    }
+    await this.$store.dispatch('switchPuzzle', puzzleId);
+
+    // Check if user has any prior progress on puzzle
+    const progressCollection = this.puzzleProgress;
+    if (!has(progressCollection, this.userId)) {
+      await this.$store.dispatch('createUserPuzzleProgress', {
+        puzzleId,
+        userId: this.userId,
+      });
+
+      // Refetch puzzle data now that we've created progress row for user
+      await this.$store.dispatch('switchPuzzle', puzzleId);
+    }
+
+    this.isLoaded = true;
   },
 
   mounted() {
@@ -51,15 +105,16 @@ export default {
       // Note: Enter key is handled in HiveInput.vue
 
       if (e.keyCode === 8 || e.keyCode === 46) {  // Backspace and Delete
-        this.$store.commit('removeInputLetter');         
-      
-      } else if (e.keyCode > 64 && e.keyCode < 91) { // A-Z        
+        this.$store.commit('removeInputLetter');
+
+      } else if (e.keyCode > 64 && e.keyCode < 91) { // A-Z
         EventBus.$emit('letterKeyPress', e.key.toLocaleLowerCase());
-        this.$store.commit('addInputLetter', e.key);  
+        this.$store.commit('addInputLetter', e.key);
 
       } else if (e.keyCode === 32) { // Space
-        this.$store.commit('shuffleOuterLetters');  
-      
+        e.preventDefault(); // Don't scroll page down
+        this.$store.commit('shuffleOuterLetters');
+
       } else if (e.keyCode === 27) { // Esc
         this.$store.commit('clearUser');
         this.$router.push({ name: 'Login' });

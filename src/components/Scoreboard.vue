@@ -18,7 +18,7 @@
         </template>
       </div>
       <div class="msg-max">
-        {{ answers.length }} words and {{ possiblePoints }} points available
+        {{ puzzle.answers.length }} words and {{ possiblePoints }} points available
       </div>
 
       <genius-bar class="genius-bar" />
@@ -73,9 +73,7 @@ export default {
       'foundWords',
       'points',
       'possiblePoints',
-    ]),
-    ...mapState([
-      'answers',
+      'puzzle',
     ]),
   },
 }

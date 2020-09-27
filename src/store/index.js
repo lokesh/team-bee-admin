@@ -1,80 +1,39 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from '@/axios';
 import shuffle from 'lodash.shuffle';
 import { calcPoints } from '@/utils';
 
 Vue.use(Vuex)
-
-
-function userProgress(state, val) {
-  if (state.users && state.puzzle && state.puzzle.userProgress) {
-      return state.puzzle.userProgress[state.user.id][val];
-  }
-  return false;
-}
 
 // Convenience function for mutations to reduce boilerplate
 const set = key => (state, val) => {
   state[key] = val;
 };
 
-// input: '{v,r,t}''
-// output: ['v','r','t']
+/**
+ * input: '{v,r,t}''
+ * output: ['v','r','t']
+ * @param  {String} str
+ * @return {[String]}
+ */
 const parseCharArray = (str) => str.replace(/[{}]/g, "").split(',');
 
-/*
-STATE
-users: {
-  1: {...}
-  2: {...}
-},
-
-puzzles: {
-  1: {...}
-  2: {...}
-},
-
-progress: {
-  1: {...}
-  2: {...}
-},
-
-// User ids
-user: 1
-team: [ 2, 3 ]
-
-GETTERS
-
-foundWords: find state.user in progress look up foundwords
-teamFoundWords:
-
-ACTIONS
-
-addWord:
-Update appropriate progress value obj and do PUT
-
-
+/**
+ * input ['kiwi', 'melon']
+ * output "{kiwi,melon}"
+ * @param  {[String]} arr
+ * @return {String}
  */
+const prepStrArray = (arr) => `{${arr.join()}}`;
 
 export default new Vuex.Store({
   state: {
-    users: null, // [id, name]
-    puzzles: null, // [id, name, date]
-
-    // User
-    user: null, // id, name,
-
-    // Puzzle
-    puzzleId: 1,
-    puzzleName: 'September 13, 2020',
-    centerLetter: '',
-    outerLetters: [],
-    answers: [],
-
-    // Progress
-    progress: {},
-    // foundWords: [],
-    // foundWords: ["altar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],
+    users: {},
+    puzzles: {},
+    puzzleProgress: {},
+    userId: 0,
+    puzzleId: 0,
 
     // UI
     input: '',
@@ -95,79 +54,126 @@ export default new Vuex.Store({
       state.input = val;
     },
 
-    // User
-    setUser(state, val) {
-      state.user = val;
-      localStorage.setItem('user', JSON.stringify(val));
+    // Users
+    setUsers(state, val) {
+      Vue.set(state, 'users', val);
+    },
+    setUserId(state, val) {
+      state.userId = val;
+      localStorage.setItem('userId', val);
     },
     clearUser(state) {
-      state.user = null;
+      state.user = {};
       localStorage.removeItem('user');
-    },
-    setUsers(state, val) {
-      state.users = val;
     },
 
     // Puzzles
-    setPuzzleId: set('puzzleId'),
-    setPuzzleName: set('puzzleName'),
-    setCenterLetter: set('centerLetter'),
-    setOuterLetters: set('outerLetters'),
-    setAnswers: set('answers'),
-
     setPuzzles(state, val) {
-      state.puzzles = val;
+      Vue.set(state, 'puzzles', val);
+    },
+    setPuzzleId: set('puzzleId'),
+
+    shuffleOuterLetters(state) {
+      state.puzzles[state.puzzleId].outer_letters =  shuffle(state.puzzles[state.puzzleId].outer_letters);
     },
 
     // Progress
-    setProgress(state, val) {
-      console.log('set progress');
-      console.log('new', Object.assign({}, val));
-      state.progress = Object.assign({}, val);
+    setPuzzleProgress(state, val) {
+      Vue.set(state, 'puzzleProgress', val);
     },
 
-    shuffleOuterLetters(state) {
-        state.outerLetters = shuffle(state.outerLetters);
-    },
-
-
-
-    // Scoreboard
-    addFoundWord() {
-      // state.foundWords.push(val);
-      // state.foundWords.sort();
+    addFoundWord(state, data) {
+      const { userId, word } = data;
+      state.puzzleProgress[userId].found_words.push(word);
     },
   },
 
   getters: {
-    foundWords: (state) => {
-      if (state.progress && state.progress[state.user.id] && state.progress[state.user.id].foundWords) {
-        return state.progress[state.user.id].foundWords;
-      } else {
-        return [];
-      }
-      // return state.progress[state.user.id].foundWords || [];
-      // const found = userProgress(state, 'foundWords');
-      // return found ? found : [];
+    user: (state) => {
+      return state.users[state.userId] || {};
     },
-    hint: (state) => userProgress(state, 'hint'),
-    revealed: (state) => userProgress(state, 'revealed'),
-    teamMode: (state) => userProgress(state, 'teamMode'),
+
+    puzzle: (state) => {
+      return state.puzzles[state.puzzleId] || {};
+    },
+
+    teamMode: (state) => state.puzzleProgress[state.userId].team_mode,
+    hint: (state) => state.puzzleProgress[state.userId].hint,
+    revealed: (state) => state.puzzleProgress[state.userId].revealed,
+    foundWords: (state) => state.puzzleProgress[state.userId].found_words,
 
     // UI
-    letters: (state) => [state.centerLetter, ...state.outerLetters],
+    letters: (state, getters) => {
+      if (!getters.puzzle) return [];
+      return [getters.puzzle.center_letter, ...getters.puzzle.outer_letters];
+    },
     points: (state, getters) => calcPoints(getters.foundWords, getters.letters),
     pointsForGenius: (state, getters) => {
       return Math.ceil(getters.possiblePoints * 0.9);
     },
-    possiblePoints: (state, getters) => calcPoints(state.answers, getters.letters),
+    possiblePoints: (state, getters) => {
+      if (!getters.puzzle) return 0;
+      return calcPoints(getters.puzzle.answers, getters.letters)
+    },
   },
 
   actions: {
-    addFoundWord: ({ state }, word) => {
-      // Hit API
-      console.log(word);
-      state.progress[state.user.id].foundWords.push(word);
+    /**
+     * Loads all user data. Used to bootstrap app.
+     * @return {Promise}]
+     */
+    loadUsers: ({ commit }) => {
+      return axios.get('/users')
+        .then(res => {
+          const users = {};
+          res.data.forEach(user => {
+            users[user.id] = user;
+          })
+          commit('setUsers', users);
+        });
+    },
+
+    /**
+     * Loads all puzzle data. Used to bootstrap app.
+     * @return {Promise}]
+     */
+    loadPuzzles: ({ commit }) => {
+      return axios.get('/puzzles')
+        .then(res => {
+          const puzzles = {};
+
+          res.data.forEach((puzzle) => {
+            puzzle.outer_letters = parseCharArray(puzzle.outer_letters);
+            puzzles[puzzle.id] = puzzle;
+          })
+          commit('setPuzzles', puzzles);
+        });
+    },
+
+    /**
+     * TODO: load puzzleProgress data
+     * @type {Promise}
+     */
+    switchPuzzle: ({ state, commit}, data) => {
+      commit('setPuzzleId', data);
+
+      // Load progress data for puzzle
+      return axios.get(`/puzzles/${state.puzzleId}/users`)
+        .then(res => {
+          // const userIds = Object.keys(state.users);
+          const progressCollection = {};
+
+          // Store existing progress by user id in object
+          res.data.forEach(progress => {
+            progressCollection[progress.user_id] = progress;
+          })
+          commit('setPuzzleProgress', progressCollection);
+        })
+    },
+
+    createUserPuzzleProgress: (data) => {
+      const { userId, puzzleId } = data;
+      return axios.post(`/puzzles/${puzzleId}/users/${userId}`);
     },
 
     loadProgress: ({ commit }, data) => {
@@ -178,12 +184,15 @@ export default new Vuex.Store({
       commit('setProgress', progress);
     },
 
-    loadPuzzle: ({ commit }, puzzle) => {
-      commit('setPuzzleId', puzzle.id);
-      commit('setPuzzleName', puzzle.name);
-      commit('setCenterLetter', puzzle.center_letter);
-      commit('setOuterLetters', parseCharArray(puzzle.outer_letters));
-      commit('setAnswers', puzzle.answers);
+    saveFoundWord: ({ state, commit, getters }, word) => {
+      commit('addFoundWord', {
+        userId: state.userId,
+        word,
+      })
+
+      axios.put(`/puzzles/${state.puzzleId}/users/${state.userId}`, {
+        found_words: prepStrArray(getters.foundWords),
+      });
     },
   },
 })
