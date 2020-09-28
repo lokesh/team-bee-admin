@@ -1,14 +1,3 @@
-It took a couple tries, but I'm happy with the db schema and the Vuex store organization. Write down some of the issues I ran into in the two prev iterations.
-
-
-1. Prefer initializing your store's initial state with all desired fields upfront.
-2. When adding new properties to an Object, you should either:
-* Use Vue.set(obj, 'newProp', 123), or
-* Replace that Object with a fresh one. For example, using the object spread syntax
- we can write it like this:
-state.obj = { ...state.obj, newProp: 123 }
-
-
 
 # Hive Words
 
@@ -20,8 +9,12 @@ npm run build // Compiles and minifies for production
 npm run lint
 ```
 
-
 ## To-do
+
+**Next**
+- [ ] Add color column to user table
+- [ ] Allow user to change
+- [ ] Show user name in UI and have a back button to switch user
 
 **Env**
 - [ ] Flag for local DB
@@ -31,13 +24,13 @@ npm run lint
 - [ ] Mobile layout
 - [ ] Puzzle switcher
 - [x] Multi-user
-- [ ] Hints
+- [x] Hints
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
 
 **Data**
 - [x] Test fetching users and display on login
 - [x] On init, sort puzzle list by date and load most recent
-- [ ] Add color column to use table
+
 - [ ] Add basic milestones (genius, et al)
 - [ ] Support puzzle switching
 - [x] Persist user progress
@@ -108,3 +101,18 @@ Manually enter in DB.
 - User mgmt
 - API auth
 - Polling for DB writes?
+
+
+_Scratchpad_
+
+It took a couple tries, but I'm happy with the db schema and the Vuex store organization. Write down some of the issues I ran into in the two prev iterations.
+
+
+1. Prefer initializing your store's initial state with all desired fields upfront.
+2. When adding new properties to an Object, you should either:
+* Use Vue.set(obj, 'newProp', 123), or
+* Replace that Object with a fresh one. For example, using the object spread syntax
+ we can write it like this:
+state.obj = { ...state.obj, newProp: 123 }
+
+
