@@ -7,17 +7,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
   name: 'PuzzleSwitcher',
-
-  computed: {
-    ...mapGetters([
-      'points',
-      'pointsForGenius',
-    ]),
-  },
 }
 </script>
 

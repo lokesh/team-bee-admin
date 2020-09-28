@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '@/axios';
 import shuffle from 'lodash.shuffle';
+import values from 'lodash.values';
 import { calcPoints } from '@/utils';
 
 Vue.use(Vuex)
@@ -82,9 +83,16 @@ export default new Vuex.Store({
       Vue.set(state, 'puzzleProgress', val);
     },
 
-    addFoundWord(state, data) {
+    pushFoundWord(state, data) {
       const { userId, word } = data;
-      state.puzzleProgress[userId].found_words.push(word);
+      const words = state.puzzleProgress[userId].found_words;
+      words.push(word);
+      words.sort();
+    },
+
+    setSetting(state, data) {
+      const { setting, value } = data;
+      state.puzzleProgress[state.userId][setting] = value;
     },
   },
 
@@ -101,6 +109,13 @@ export default new Vuex.Store({
     hint: (state) => state.puzzleProgress[state.userId].hint,
     revealed: (state) => state.puzzleProgress[state.userId].revealed,
     foundWords: (state) => state.puzzleProgress[state.userId].found_words,
+    teamFoundWords: (state) => {
+      const words = [];
+      values(state.puzzleProgress).forEach(progress => {
+        words.push(...progress.found_words);
+      })
+      return [...new Set(words)];
+    },
 
     // UI
     letters: (state, getters) => {
@@ -108,6 +123,7 @@ export default new Vuex.Store({
       return [getters.puzzle.center_letter, ...getters.puzzle.outer_letters];
     },
     points: (state, getters) => calcPoints(getters.foundWords, getters.letters),
+    teamPoints: (state, getters) => calcPoints(getters.teamFoundWords, getters.letters),
     pointsForGenius: (state, getters) => {
       return Math.ceil(getters.possiblePoints * 0.9);
     },
@@ -171,7 +187,8 @@ export default new Vuex.Store({
         })
     },
 
-    createUserPuzzleProgress: (data) => {
+    // eslint-disable-next-line no-empty-pattern
+    createUserPuzzleProgress: ({}, data) => {
       const { userId, puzzleId } = data;
       return axios.post(`/puzzles/${puzzleId}/users/${userId}`);
     },
@@ -184,14 +201,31 @@ export default new Vuex.Store({
       commit('setProgress', progress);
     },
 
-    saveFoundWord: ({ state, commit, getters }, word) => {
-      commit('addFoundWord', {
+    addFoundWord: ({ state, commit, getters }, word) => {
+      commit('pushFoundWord', {
         userId: state.userId,
         word,
       })
 
-      axios.put(`/puzzles/${state.puzzleId}/users/${state.userId}`, {
+      return axios.put(`/puzzles/${state.puzzleId}/users/${state.userId}`, {
         found_words: prepStrArray(getters.foundWords),
+      });
+    },
+
+    toggleSetting: ({ state, commit, getters }, setting) => {
+      const val = getters[setting];
+
+      if (setting === 'teamMode') {
+        setting = 'team_mode';
+      }
+
+      commit('setSetting', {
+        setting,
+        value: !val,
+      });
+
+      return axios.put(`/puzzles/${state.puzzleId}/users/${state.userId}`, {
+        [setting]: !val,
       });
     },
   },

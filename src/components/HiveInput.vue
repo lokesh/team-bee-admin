@@ -138,7 +138,7 @@ export default {
         let str = isPangram(this.input) ? 'Pangram! ' : '';
         this.notice(`${str} +${points}`);
 
-        this.$store.dispatch('saveFoundWord', this.input);
+        this.$store.dispatch('addFoundWord', this.input);
         this.$store.commit('clearInput');
       }
     } ,

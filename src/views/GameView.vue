@@ -75,6 +75,7 @@ export default {
           .find((puzzle, index) => puzzleCount === index + 1)
           .id;
     }
+
     await this.$store.dispatch('switchPuzzle', puzzleId);
 
     // Check if user has any prior progress on puzzle

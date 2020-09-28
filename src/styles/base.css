@@ -68,7 +68,7 @@ body {
   margin: 0;
   padding: 0;
   color: var(--color);
-  
+
   /* Disable iOS double tap zoom */
   touch-action: pan-y;
 }
@@ -106,7 +106,7 @@ button:focus-visible {
   border-color: var(--color-focus);
 }
 
-button.text-button {
+/*button.text-button {
   padding: 0;
   color: var(--color-secondary);
   border: 0;
@@ -121,6 +121,10 @@ button.text-button:active {
   background: transparent;
 }
 
+*//*button.text-button.toggled {
+  position: relative;
+  color: var(--color);
+}*/
 
 .button-row {
   display: flex;

@@ -12,6 +12,7 @@ module.exports = {
   },
   rules: {
     'no-debugger': 'warn',
-    "no-unused-vars": "warn"
+    'no-unused-vars': "warn",
+    'no-empty': 'warn'
   }
 }

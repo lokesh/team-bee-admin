@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "lodash.filter": "^4.6.0",
     "lodash.get": "^4.4.2",
     "lodash.has": "^4.5.2",
     "lodash.shuffle": "^4.2.0",

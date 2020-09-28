@@ -26,17 +26,21 @@ npm run lint
 **Env**
 - [ ] Flag for local DB
 
-**Design**
+**UI**
 - [x] On key press, animate active
-- [ ] Design update: Mobile layout, puzzle switcher, multi-user, hints
-- [ ] Add limit to word length
+- [ ] Mobile layout
+- [ ] Puzzle switcher
+- [x] Multi-user
+- [ ] Hints
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
 
 **Data**
-- [ ] Test fetching users and display on login
-- [ ] On init, sort puzzle list by date and load most recent
+- [x] Test fetching users and display on login
+- [x] On init, sort puzzle list by date and load most recent
+- [ ] Add color column to use table
 - [ ] Add basic milestones (genius, et al)
-- [ ] Support puzzle switching, persist puzzle data
+- [ ] Support puzzle switching
+- [x] Persist user progress
 
 **Real-time**
 - [ ] Use socket.io to relay word additions between players

@@ -14,17 +14,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
 export default {
     name: 'GeniusBar',
 
-    computed: {
-      ...mapGetters([
-        'points',
-        'possiblePoints',
-      ]),
+    props: {
+      points: {
+        type: Number,
+        required: true,
+      },
+      possiblePoints: {
+        type: Number,
+        required: true,
+      },
+    },
 
+    computed: {
       percentComplete() {
         return (this.points / this.possiblePoints).toFixed(2);
       }

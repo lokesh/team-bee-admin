@@ -8,7 +8,10 @@
         {{ foundWords.length}} words and {{ points }} points
       </template>
     </div>
-    <genius-bar />
+    <genius-bar
+      :points="displayPoints"
+      :possible-points="possiblePoints"
+    />
   </div>
 </template>
 
@@ -27,11 +30,16 @@ export default {
     ...mapGetters([
       'foundWords',
       'points',
-      'pointsForGenius',
+      'possiblePoints',
+      'teamFoundWords',
+      'teamMode',
+      'teamPoints',
     ]),
-    // ...mapState([
-    //   'foundWords',
-    // ]),
+
+    displayPoints() {
+      return this.teamMode ? this.teamPoints : this.points;
+    },
+
   },
 }
 </script>

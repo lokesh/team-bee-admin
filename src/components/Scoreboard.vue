@@ -2,45 +2,71 @@
   <div class="wrapper">
     <div class="scoreboard">
       <segmented-control
-        v-model="teamMode"
+        :value="teamMode"
         :options="[
             { label: 'Solo', value: false },
             { label: 'Team', value: true },
         ]"
         class="team-control"
+        @input="toggleSetting('teamMode')"
       />
-      <div class="msg-score">
-        <template v-if="foundWords.length === 1">
-          1 word and {{ points }} points
+      <div
+        class="msg-score"
+      >
+        <template v-if="displayFoundWordsCount === 1">
+          1 word and {{ displayPoints }} points
         </template>
         <template v-else>
-          {{ foundWords.length}} words and {{ points }} points
+          {{ displayFoundWordsCount}} words and {{ displayPoints }} points
         </template>
       </div>
       <div class="msg-max">
         {{ puzzle.answers.length }} words and {{ possiblePoints }} points available
       </div>
 
-      <genius-bar class="genius-bar" />
+      <genius-bar
+        class="genius-bar"
+        :points="displayPoints"
+        :possible-points="possiblePoints"
+      />
 
       <div class="list">
         <div
-          v-for="(word, i) in foundWords"
-          :key="i"
-          class="word"
+          v-for="row in displayList"
+          :key="row.word"
+          class="list-row"
         >
-          {{ word }}
+          <div
+            :class="{ 'hint': hintCheck(row.word) }"
+          >
+          {{ row.word }}
+          </div>
+
+          <div
+            class="tags"
+            v-if="teamMode"
+          >
+            <user-tag
+              v-for="user in row.users"
+              :user-id="user"
+              :key="`user-${user}`"
+            />
+          </div>
         </div>
       </div>
 
       <div class="hint-bar">
         <button
-          class="text-button"
+          class="text-button hint-button"
+          :class="{ 'toggled': hint }"
+          @click="toggleSetting('hint')"
         >
           Hints
         </button>
         <button
-          class="text-button"
+          class="text-button hint-button"
+          :class="{ 'toggled': revealed }"
+          @click="toggleSetting('revealed')"
         >
           Reveal answers
         </button>
@@ -51,8 +77,10 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
+import filter from 'lodash.filter';
 import GeniusBar from '@/components/GeniusBar';
 import SegmentedControl from '@/components/SegmentedControl';
+import UserTag from '@/components/UserTag';
 
 export default {
   name: 'Scoreboard',
@@ -60,23 +88,100 @@ export default {
   components: {
     GeniusBar,
     SegmentedControl,
-  },
-
-  data() {
-    return {
-      teamMode: false,
-    };
+    UserTag,
   },
 
   computed: {
     ...mapGetters([
       'foundWords',
+      'teamFoundWords',
+      'hint',
       'points',
+      'teamPoints',
       'possiblePoints',
       'puzzle',
+      'revealed',
+      'teamMode',
     ]),
+
+    ...mapState([
+      'puzzleProgress',
+      'userId'
+    ]),
+
+    displayPoints() {
+      return this.teamMode ? this.teamPoints : this.points;
+    },
+
+    displayFoundWordsCount() {
+      return this.teamMode ? this.teamFoundWords.length : this.foundWords.length;
+    },
+
+    displayList() {
+      // If hints or reveal, show all
+      if (this.hint || this.revealed) {
+        return this.list;
+      } else {
+        // If team, show team finds.
+        // If solo, show user finds.
+        if (this.teamMode) {
+          return this.teamList;
+        } else {
+          return this.soloList;
+        }
+      }
+    },
+
+    /**
+     * Returns array of all words and which users have found them
+     * @return {[Object]} row
+     * @return {String}   row.word
+     * @return {[Number]} row.users
+     */
+    list() {
+      return this.puzzle.answers.map(word => {
+        let users = [];
+        filter(this.puzzleProgress, (progress, userId) => {
+          if (progress.found_words.includes(word)) {
+            users.push(parseInt(userId))
+          }
+        })
+        return {
+          word,
+          users,
+        }
+      })
+    },
+
+    soloList() {
+      return this.list.filter(row => {
+        return row.users.includes(this.userId);
+      })
+    },
+
+    teamList() {
+      return this.list.filter(row => {
+        return row.users.length;
+      })
+    },
   },
-}
+
+  methods: {
+    toggleSetting(setting) {
+      this.$store.dispatch('toggleSetting', setting);
+    },
+
+    hintCheck(word) {
+      if (this.revealed) {
+        return false;
+      } else if (this.teamMode) {
+        return !this.teamList.find(row => row.word === word);
+      } else {
+        return !this.soloList.find(row => row.word === word);
+      }
+    }
+  },
+};
 </script>
 
 <style scoped>
@@ -116,8 +221,10 @@ export default {
   align-content: flex-start;
 }
 
-.word {
-  min-width: 6em;
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  min-width: 8em;
   padding: 0.4em 0;
   margin-right: calc(var(--gutter) / 2);
   border-bottom: var(--border-inline);
@@ -125,8 +232,36 @@ export default {
   text-transform: capitalize;
 }
 
+.tags {
+  display: flex;
+  gap: 4px;
+}
+
+.hint {
+  background: var(--color);
+}
+
 .hint-bar {
   display: flex;
   justify-content: space-between;
+}
+
+.hint-button {
+  position: relative;
+  left: -4px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--color-secondary);
+}
+
+.hint-button:hover {
+  color: var(--color);
+  background-color: var(--color-muted);
+}
+
+.hint-button.toggled {
+  color: var(--color);
+  background-color: var(--color-primary);
 }
 </style>
