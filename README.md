@@ -12,8 +12,7 @@ npm run lint
 ## To-do
 
 **Next**
-- [ ] Add color column to user table
-- [ ] Allow user to change
+- [x] Add color column to user table
 - [ ] Show user name in UI and have a back button to switch user
 
 **Env**
@@ -21,8 +20,8 @@ npm run lint
 
 **UI**
 - [x] On key press, animate active
-- [ ] Mobile layout
 - [ ] Puzzle switcher
+- [ ] Mobile layout
 - [x] Multi-user
 - [x] Hints
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd

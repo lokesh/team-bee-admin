@@ -1,15 +1,25 @@
 <template>
   <div class="wrapper">
     <div class="scoreboard">
-      <segmented-control
-        :value="teamMode"
-        :options="[
-            { label: 'Solo', value: false },
-            { label: 'Team', value: true },
-        ]"
-        class="team-control"
-        @input="toggleSetting('teamMode')"
-      />
+
+      <div class="user-bar">
+        <segmented-control
+          :value="teamMode"
+          :options="[
+              { label: userName, value: false },
+              { label: 'Team', value: true },
+          ]"
+          class="team-control"
+          @input="toggleSetting('teamMode')"
+        />
+        <router-link
+            class="text-button"
+            to="/"
+          >
+          Switch user
+        </router-link>
+      </div>
+
       <div
         class="msg-score"
       >
@@ -57,14 +67,14 @@
 
       <div class="hint-bar">
         <button
-          class="text-button hint-button"
+          class="hint-button"
           :class="{ 'toggled': hint }"
           @click="toggleSetting('hint')"
         >
           Hints
         </button>
         <button
-          class="text-button hint-button"
+          class="hint-button"
           :class="{ 'toggled': revealed }"
           @click="toggleSetting('revealed')"
         >
@@ -106,7 +116,8 @@ export default {
 
     ...mapState([
       'puzzleProgress',
-      'userId'
+      'users',
+      'userId',
     ]),
 
     displayPoints() {
@@ -164,6 +175,10 @@ export default {
         return row.users.length;
       })
     },
+
+    userName() {
+      return this.users[this.userId].name;
+    },
   },
 
   methods: {
@@ -189,7 +204,16 @@ export default {
   padding: var(--gutter);
 }
 
-.team-control {
+.scoreboard {
+  padding: var(--gutter);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.user-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: var(--gutter);
 }
 
@@ -204,12 +228,6 @@ export default {
 
 .genius-bar {
   margin-bottom: calc(var(--gutter) / 2);
-}
-
-.scoreboard {
-  padding: var(--gutter);
-  border: var(--border);
-  border-radius: var(--radius);
 }
 
 .list {
