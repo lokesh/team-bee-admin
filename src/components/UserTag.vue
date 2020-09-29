@@ -1,6 +1,9 @@
 <template>
-  <div class="tag">
-    {{ users[userId].name.slice(0, 1) }}
+  <div
+    class="tag"
+    :style="`background: ${user.color}`"
+  >
+    {{ user.name.slice(0, 1) }}
   </div>
 </template>
 
@@ -21,6 +24,10 @@ export default {
     ...mapState([
       'users'
     ]),
+
+    user() {
+      return this.users[this.userId];
+    },
   },
 }
 </script>
@@ -36,6 +43,7 @@ export default {
   font-weight: bold;
   text-transform: uppercase;
   border-radius: var(--radius-sm);
+  color: white;
   background-color: var(--color-muted);
 }
 </style>

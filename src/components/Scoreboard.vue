@@ -234,7 +234,9 @@ export default {
 
 .tags {
   display: flex;
+  flex-direction: row-reverse;
   gap: 4px;
+  margin-left: var(--gutter);
 }
 
 .hint {
