@@ -132,6 +132,12 @@ button:focus-visible {
 .button-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--gutter);
+}
+
+.button-row-button {
+  margin-right: var(--gutter);
+}
+
+.button-row-button:last-of-type {
+  margin-right: 0;
 }

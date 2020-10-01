@@ -2,7 +2,7 @@
   <div class="switcher">
     <button
       v-visible="puzzleIndex !== 0"
-      class="nav-btn"
+      class="nav-button"
       @click="gotoPrevPuzzle"
     >
       <svg class="icon" width="19" height="28" viewBox="0 0 19 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,7 +15,7 @@
     </div>
     <button
       v-visible="puzzleIndex !== puzzlesArray.length - 1"
-      class="nav-btn nav-btn-reverse"
+      class="nav-button nav-button-reverse"
       @click="gotoNextPuzzle"
     >
       <svg class="icon" width="19" height="28" viewBox="0 0 19 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,19 +79,21 @@ export default {
   padding: 0;
   border: var(--border);
   border-radius: var(--radius);
+  height: 32px;
 }
 
 .name {
   padding: 6px;
 }
 
-.nav-btn {
+.nav-button {
+  height: 30px;
   border: 0;
-  padding: 6px 24px 6px 6px;
+  padding: 0 24px 0 6px;
   border-radius: var(--radius);
 }
 
-.nav-btn-reverse {
+.nav-button-reverse {
   padding: 6px 6px 6px 24px;
 }
 

@@ -78,13 +78,11 @@ export default {
 .button-row {
   flex-direction: column;
   align-items: center;
-  gap: 8px;
 }
 
 @media (min-width: 640px) {
   .button-row {
     flex-direction: row;
-    gap: var(--gutter);
   }
 
   .button-row-button {

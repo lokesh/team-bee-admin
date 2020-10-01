@@ -1,5 +1,8 @@
 <template>
-  <div class="scoreboard">
+  <div
+    class="scoreboard-mini"
+    @click="openScoreboard"
+  >
     <div class="msg-score">
       <template v-if="foundWords.length === 1">
         1 word and {{ points }} points
@@ -39,13 +42,18 @@ export default {
     displayPoints() {
       return this.teamMode ? this.teamPoints : this.points;
     },
+  },
 
+  methods: {
+    openScoreboard() {
+      this.$store.commit('openModal', 'scoreboard');
+    },
   },
 }
 </script>
 
 <style scoped>
-.scoreboard {
+.scoreboard-mini {
   padding: var(--gutter);
   border: var(--border);
   border-radius: var(--radius);

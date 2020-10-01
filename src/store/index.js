@@ -38,23 +38,12 @@ export default new Vuex.Store({
 
     // UI
     input: '',
+
+    // On mobile, we show the scoreboard as a modal
+    modal: null,
   },
 
   mutations: {
-    // Input
-    addInputLetter(state, val) {
-        state.input = state.input + val;
-    },
-    clearInput(state) {
-      state.input = '';
-    },
-    removeInputLetter(state) {
-      state.input = state.input.slice(0, -1);
-    },
-    setInput(state, val) {
-      state.input = val;
-    },
-
     // Users
     setUsers(state, val) {
       Vue.set(state, 'users', val);
@@ -93,6 +82,29 @@ export default new Vuex.Store({
     setSetting(state, data) {
       const { setting, value } = data;
       state.puzzleProgress[state.userId][setting] = value;
+    },
+
+    // Input
+    addInputLetter(state, val) {
+        state.input = state.input + val;
+    },
+    clearInput(state) {
+      state.input = '';
+    },
+    removeInputLetter(state) {
+      state.input = state.input.slice(0, -1);
+    },
+    setInput(state, val) {
+      state.input = val;
+    },
+
+    // Modals
+    openModal(state, val) {
+      state.modal = val;
+    },
+
+    closeModal(state) {
+      state.modal = null;
     },
   },
 

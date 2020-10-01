@@ -9,16 +9,13 @@
       <div class="row-switcher">
         <puzzle-switcher class="puzzle-switcher" />
         <router-link
-            to="/"
-            class="user-switcher-btn icon-button"
-          >
-          <svg class="user-icon" width="36" height="40" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M18 4C15.7909 4 14 5.79086 14 8C14 10.2091 15.7909 12 18 12C20.2091 12 22 10.2091 22 8C22 5.79086 20.2091 4 18 4ZM10 8C10 3.58172 13.5817 0 18 0C22.4183 0 26 3.58172 26 8C26 12.4183 22.4183 16 18 16C13.5817 16 10 12.4183 10 8Z" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M4.15251 30.0148C5.03287 31.9385 6.83401 33.3892 9.26923 34.4038C11.9644 35.5268 15.1887 36 18 36C20.8113 36 24.0356 35.5268 26.7308 34.4038C29.166 33.3892 30.9671 31.9385 31.8475 30.0148C30.9392 28.1802 28.8246 26.6907 26.032 25.6167C23.016 24.4567 19.7598 24 18 24C16.2402 24 12.984 24.4567 9.96796 25.6167C7.17543 26.6907 5.06076 28.1803 4.15251 30.0148ZM8.53204 21.8833C12.016 20.5433 15.7598 20 18 20C20.2402 20 23.984 20.5433 27.468 21.8833C30.8684 23.1912 34.6039 25.4872 35.8974 29.3675C36.0342 29.7781 36.0342 30.2219 35.8974 30.6325C34.647 34.3836 31.568 36.7217 28.2692 38.0962C24.9644 39.4732 21.1887 40 18 40C14.8113 40 11.0356 39.4732 7.73077 38.0962C4.43198 36.7217 1.35302 34.3836 0.102633 30.6325C-0.0342111 30.2219 -0.0342111 29.7781 0.102633 29.3675C1.39609 25.4872 5.13163 23.1912 8.53204 21.8833Z" fill="black"/>
-</svg>
-
+          to="/"
+          class="user-switcher-button"
+        >
+          <icon-button
+            icon="user"
+          />
         </router-link>
-
       </div>
 
       <scoreboard-mini class="scoreboard-mini" />
@@ -31,7 +28,10 @@
       <hive-actions class="hive-actions" />
     </div>
 
-    <scoreboard class="col-scoreboard" />
+    <scoreboard
+      class="col-scoreboard"
+      :class="{ 'modal': modal === 'scoreboard' }"
+    />
   </div>
 </template>
 
@@ -43,6 +43,7 @@ import EventBus from '@/event-bus.js';
 import Hive from '@/components/Hive.vue';
 import HiveActions from '@/components/HiveActions.vue';
 import HiveInput from '@/components/HiveInput.vue';
+import IconButton from '@/components/IconButton.vue';
 import PuzzleSwitcher from '@/components/PuzzleSwitcher.vue'
 import Scoreboard from '@/components/Scoreboard.vue'
 import ScoreboardMini from '@/components/ScoreboardMini.vue'
@@ -54,6 +55,7 @@ export default {
     Hive,
     HiveActions,
     HiveInput,
+    IconButton,
     PuzzleSwitcher,
     Scoreboard,
     ScoreboardMini,
@@ -70,7 +72,8 @@ export default {
       'puzzles',
       'puzzleProgress',
       'puzzleId',
-      'userId'
+      'userId',
+      'modal',
     ]),
   },
 
@@ -149,24 +152,26 @@ export default {
   display: none;
 }
 
+.col-scoreboard.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
 .row-switcher {
   display: flex;
-  gap: var(--gutter);
-}
-
-.user-switcher-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-icon {
-  width: 16px;
 }
 
 .puzzle-switcher {
   flex: 1 1 auto;
   margin-bottom: var(--gutter);
+}
+
+.user-switcher-button {
+  margin-left: var(--gutter);
 }
 
 .hive-input {
@@ -176,7 +181,7 @@ export default {
 .hive-positioner {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--gutter);
+  margin-bottom: calc(var(--gutter) * 2);
 }
 
 .hive-sizer {
@@ -191,9 +196,11 @@ export default {
 
   .col-gameboard {
     flex: 0 1 420px;
+    /* The scoreboard has a padding left that already creates the gutter */
+    padding-right: 0;
   }
 
-  .user-switcher-btn {
+  .user-switcher-button {
     display: none;
   }
 
@@ -208,6 +215,10 @@ export default {
   .col-scoreboard {
     display: block;
     flex: 1 1 auto;
+  }
+
+  .col-scoreboard.modal {
+    position: static;
   }
 }
 </style>

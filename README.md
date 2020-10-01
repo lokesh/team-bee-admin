@@ -14,6 +14,7 @@ npm run lint
 **Next**
 - [ ] Mobile layout
 - [ ] Add genius flag to progress bar. Once met, change to yellow bg and add 👑
+- [ ] Review GameView created lifecycle method
 
 **Env**
 - [ ] Flag for local DB
@@ -24,6 +25,10 @@ npm run lint
 **Real-time**
 - [ ] Use socket.io to relay word additions between players
 - [ ] Design distinct notifications for real-time.
+
+**User mgmt**
+- [ ] Think about token for teams. Requiring a token to see user list on login.
+- [ ] User sign up form
 
 **Security**
 - [ ] API authentication

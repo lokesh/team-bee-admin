@@ -13,11 +13,18 @@
           @input="toggleSetting('teamMode')"
         />
         <router-link
-            class="text-button"
+            class="text-button user-switcher"
             to="/"
           >
           Switch user
         </router-link>
+
+        <icon-button
+          class="close-button"
+          icon="x"
+          radius="small"
+          @click="closeModal"
+        />
       </div>
 
       <div
@@ -60,6 +67,7 @@
               v-for="user in row.users"
               :user-id="user"
               :key="`user-${user}`"
+              class="tag"
             />
           </div>
         </div>
@@ -89,6 +97,7 @@
 import { mapGetters, mapState } from 'vuex';
 import filter from 'lodash.filter';
 import GeniusBar from '@/components/GeniusBar';
+import IconButton from '@/components/IconButton';
 import SegmentedControl from '@/components/SegmentedControl';
 import UserTag from '@/components/UserTag';
 
@@ -97,6 +106,7 @@ export default {
 
   components: {
     GeniusBar,
+    IconButton,
     SegmentedControl,
     UserTag,
   },
@@ -182,6 +192,9 @@ export default {
   },
 
   methods: {
+    closeModal() {
+      this.$store.commit('closeModal');
+    },
     toggleSetting(setting) {
       this.$store.dispatch('toggleSetting', setting);
     },
@@ -202,6 +215,7 @@ export default {
 <style scoped>
 .wrapper {
   padding: var(--gutter);
+  background: white;
 }
 
 .scoreboard {
@@ -215,6 +229,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: var(--gutter);
+}
+
+.user-switcher {
+  display: none;
 }
 
 .msg-score {
@@ -243,9 +261,10 @@ export default {
 .list-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   min-width: 8em;
   padding: 0.4em 0;
-  margin-right: calc(var(--gutter) / 2);
+  margin-right: var(--gutter);
   border-bottom: var(--divider);
   font-size: 18px;
   text-transform: capitalize;
@@ -254,8 +273,15 @@ export default {
 .tags {
   display: flex;
   flex-direction: row-reverse;
-  gap: 4px;
   margin-left: var(--gutter);
+}
+
+.tag {
+  margin-left: 4px;
+}
+
+.tag:last-of-type {
+  margin-left: 0;
 }
 
 .hint {
@@ -284,5 +310,20 @@ export default {
 .hint-button.toggled {
   color: var(--color);
   background-color: var(--color-primary);
+}
+
+@media (min-width: 640px) {
+  .user-switcher {
+    display: block;
+  }
+
+  .close-button {
+    display: none;
+  }
+
+  .list {
+    display: flex;
+    height: 50vh;
+  }
 }
 </style>
