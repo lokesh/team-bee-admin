@@ -1,8 +1,15 @@
 <template>
-    <div>
-        <div v-if="false" class="flag">
-          Genius
+    <div
+      class="genius-bar"
+      :class="{'is-genius': isGenius}"
+    >
+        <div
+          class="flag"
+          :style="flagStyles"
+        >
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="0 0 100 100" xml:space="preserve"><path d="M26.212,73.333c0.293,3.301,0.454,6.631,0.454,10h46.667c0-3.369,0.16-6.699,0.453-10H26.212z"/><path d="M83.333,30c-3.682,0-6.666,2.985-6.666,6.667c0,0.735,0.149,1.436,0.371,2.1l-13.705,4.567l-9.635-14.453  c1.787-1.198,2.969-3.236,2.969-5.547c0-3.682-2.985-6.667-6.667-6.667s-6.667,2.985-6.667,6.667c0,2.311,1.18,4.349,2.969,5.547  l-9.636,14.453l-13.703-4.567c0.221-0.664,0.37-1.364,0.37-2.1c0-3.682-2.987-6.667-6.667-6.667C12.985,30,10,32.985,10,36.667  s2.985,6.667,6.667,6.667c0.896,0,1.745-0.183,2.524-0.502c2.897,7.63,4.995,15.605,6.223,23.835h49.173  c1.227-8.229,3.323-16.205,6.221-23.835c0.781,0.319,1.631,0.502,2.525,0.502c3.682,0,6.667-2.985,6.667-6.667S87.015,30,83.333,30z  "/></svg>
         </div>
+
         <div class="rail">
           <div
             class="rail-fill"
@@ -14,6 +21,8 @@
 </template>
 
 <script>
+import { GENIUS_PERCENTAGE } from '@/utils/constants';
+
 export default {
     name: 'GeniusBar',
 
@@ -29,18 +38,62 @@ export default {
     },
 
     computed: {
+      isGenius() {
+        return (this.percentComplete >= GENIUS_PERCENTAGE);
+      },
+
+      flagStyles() {
+        const halfFlagWidth = `${28 / 2}px`;
+        const percent = `${GENIUS_PERCENTAGE * 100}%`;
+        return {
+          left: `calc(${percent} - ${halfFlagWidth})`,
+        };
+      },
+
       percentComplete() {
         return (this.points / this.possiblePoints).toFixed(2);
-      }
+      },
     },
 }
 </script>
 
 <style scoped>
+.genius-bar {
+  position: relative;
+}
+
+.flag {
+  position: absolute;
+  top: -32px;
+  display: block;
+  padding: 1px 3px 0 3px;
+  border: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.flag::after {
+  content: '';
+  width: 1px;
+  height: 10px;
+  background: var(--color-muted);
+  position: absolute;
+  left: calc(50% - 1px);
+  top: 100%;
+}
+
+.icon {
+  width: 20px;
+}
+
+.is-genius .flag {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
 .rail {
   position: relative;
   overflow: hidden;
-  height: 24px;
+  height: 8px;
   border-radius: var(--radius-sm);
   background: var(--color-muted);
 }
@@ -53,4 +106,5 @@ export default {
   transform-origin: left;
   transition: 0.5s all;
 }
+
 </style>
