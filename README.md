@@ -15,6 +15,7 @@ npm run lint
 - [x] Mobile layout
 - [x] Add genius flag to progress bar. Once met, change to yellow bg and add 👑
 - [ ] Review GameView created lifecycle method
+- [ ] Add check so user progress for a puzzle isn't created multiple times
 - [ ] Push to Heroku
 - [ ] Consolidate API and vue app into single project
 

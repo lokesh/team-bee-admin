@@ -117,6 +117,11 @@ export default new Vuex.Store({
       return state.puzzles[state.puzzleId] || {};
     },
 
+    newestPuzzle: (state) => {
+      const puzzles = values(state.puzzles);
+      return puzzles[puzzles.length - 1];
+    },
+
     teamMode: (state) => state.puzzleProgress[state.userId].team_mode,
     hint: (state) => state.puzzleProgress[state.userId].hint,
     revealed: (state) => state.puzzleProgress[state.userId].revealed,

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import has from 'lodash.has';
 import values from 'lodash.values';
 import EventBus from '@/event-bus.js';
@@ -75,6 +75,10 @@ export default {
       'userId',
       'modal',
     ]),
+
+    ...mapGetters([
+      'newestPuzzle',
+    ]),
   },
 
   async created() {
@@ -82,17 +86,7 @@ export default {
 
     // Switch to puzzle
     // If no puzzle is active, switch to the newest.
-    let puzzleId = null;
-    if (this.puzzleId) {
-      puzzleId = this.puzzleId;
-    } else {
-      const puzzles = values(this.puzzles);
-      const puzzleCount = puzzles.length;
-      puzzleId =
-        puzzles
-          .find((puzzle, index) => puzzleCount === index + 1)
-          .id;
-    }
+    let puzzleId = this.puzzleId ? this.puzzleId : this.newestPuzzle.id;
 
     await this.$store.dispatch('switchPuzzle', puzzleId);
 
