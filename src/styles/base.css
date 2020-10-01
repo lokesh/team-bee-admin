@@ -37,7 +37,7 @@
 
   /* Borders */
   --border: 1px solid var(--color-muted-dark);
-  --border-inline: 1px solid var(--color-muted);
+  --divider: 1px solid var(--color-muted);
 
 
   /* Shadows */
@@ -122,15 +122,16 @@ button:focus-visible {
   background: transparent;
 }
 
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
 .button-row {
   display: flex;
   justify-content: center;
-}
-
-.button-row-button {
-  margin-right: 24px;
-}
-
-.button-row-button:last-of-type {
-  margin-right: 0;
+  flex-wrap: wrap;
+  gap: var(--gutter);
 }

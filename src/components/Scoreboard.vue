@@ -237,6 +237,7 @@ export default {
   flex-direction: column;
   flex-wrap: wrap;
   align-content: flex-start;
+  overflow-x: auto;
 }
 
 .list-row {
@@ -245,7 +246,7 @@ export default {
   min-width: 8em;
   padding: 0.4em 0;
   margin-right: calc(var(--gutter) / 2);
-  border-bottom: var(--border-inline);
+  border-bottom: var(--divider);
   font-size: 18px;
   text-transform: capitalize;
 }

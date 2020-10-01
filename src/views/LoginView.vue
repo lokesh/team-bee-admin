@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="page">
     <h2>Who's playing?</h2>
 
     <div class="button-row">
@@ -13,7 +13,7 @@
       <button
         v-for="user in users"
         :key="user.id"
-        class="button-row-button button-vandana"
+        class="button-row-button"
         @click="login(user.id)"
       >
         {{ user.name }}
@@ -65,7 +65,30 @@ export default {
 </script>
 
 <style scoped>
-.login {
+.page {
+  padding: var(--gutter);
   text-align: center;
+}
+
+.button-row-button {
+  margin-bottom: var(--gutter);
+  min-width: 50vw;
+}
+
+.button-row {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 640px) {
+  .button-row {
+    flex-direction: row;
+    gap: var(--gutter);
+  }
+
+  .button-row-button {
+    min-width: auto;
+  }
 }
 </style>

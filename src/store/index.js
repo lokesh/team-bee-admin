@@ -167,16 +167,15 @@ export default new Vuex.Store({
     },
 
     /**
-     * TODO: load puzzleProgress data
+     * Load all user progress data for puzzle
      * @type {Promise}
      */
     switchPuzzle: ({ state, commit}, data) => {
       commit('setPuzzleId', data);
+      commit('clearInput');
 
-      // Load progress data for puzzle
       return axios.get(`/puzzles/${state.puzzleId}/users`)
         .then(res => {
-          // const userIds = Object.keys(state.users);
           const progressCollection = {};
 
           // Store existing progress by user id in object

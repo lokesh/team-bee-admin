@@ -12,27 +12,14 @@ npm run lint
 ## To-do
 
 **Next**
-- [x] Add color column to user table
-- [ ] Show user name in UI and have a back button to switch user
+- [ ] Mobile layout
+- [ ] Add genius flag to progress bar. Once met, change to yellow bg and add 👑
 
 **Env**
 - [ ] Flag for local DB
 
 **UI**
-- [x] On key press, animate active
-- [ ] Puzzle switcher
-- [ ] Mobile layout
-- [x] Multi-user
-- [x] Hints
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
-
-**Data**
-- [x] Test fetching users and display on login
-- [x] On init, sort puzzle list by date and load most recent
-
-- [ ] Add basic milestones (genius, et al)
-- [ ] Support puzzle switching
-- [x] Persist user progress
 
 **Real-time**
 - [ ] Use socket.io to relay word additions between players
