@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isLoaded"
+    v-if="userProgressDataLoaded"
     class="view"
   >
 
@@ -37,8 +37,6 @@
 
 <script>
 import { mapGetters, mapState } from 'vuex';
-import has from 'lodash.has';
-import values from 'lodash.values';
 import EventBus from '@/event-bus.js';
 import Hive from '@/components/Hive.vue';
 import HiveActions from '@/components/HiveActions.vue';
@@ -61,12 +59,6 @@ export default {
     ScoreboardMini,
   },
 
-  data() {
-    return {
-      isLoaded: false,
-    };
-  },
-
   computed: {
     ...mapState([
       'puzzles',
@@ -77,32 +69,15 @@ export default {
     ]),
 
     ...mapGetters([
+      'userProgressDataLoaded',
       'newestPuzzle',
     ]),
   },
 
   async created() {
-    // TODO: Make reusable. It'll be needed when switching puzzles
-
-    // Switch to puzzle
-    // If no puzzle is active, switch to the newest.
+    // Switch to puzzle, either selected or newest
     let puzzleId = this.puzzleId ? this.puzzleId : this.newestPuzzle.id;
-
     await this.$store.dispatch('switchPuzzle', puzzleId);
-
-    // Check if user has any prior progress on puzzle
-    const progressCollection = this.puzzleProgress;
-    if (!has(progressCollection, this.userId)) {
-      await this.$store.dispatch('createUserPuzzleProgress', {
-        puzzleId,
-        userId: this.userId,
-      });
-
-      // Refetch puzzle data now that we've created progress row for user
-      await this.$store.dispatch('switchPuzzle', puzzleId);
-    }
-
-    this.isLoaded = true;
   },
 
   mounted() {

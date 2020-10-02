@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '@/axios';
+import has from 'lodash.has';
 import shuffle from 'lodash.shuffle';
 import values from 'lodash.values';
 import { calcPoints } from '@/utils';
@@ -72,6 +73,11 @@ export default new Vuex.Store({
       Vue.set(state, 'puzzleProgress', val);
     },
 
+    // val param: { id: 30, puzzle_id: 11, user_id: 3, ... }
+    addUserPuzzleProgress(state, val) {
+      Vue.set(state.puzzleProgress, val.user_id, val);
+    },
+
     pushFoundWord(state, data) {
       const { userId, word } = data;
       const words = state.puzzleProgress[userId].found_words;
@@ -109,6 +115,10 @@ export default new Vuex.Store({
   },
 
   getters: {
+    userProgressDataLoaded: (state) => {
+      return !!state.puzzleProgress[state.userId];
+    },
+
     user: (state) => {
       return state.users[state.userId] || {};
     },
@@ -184,10 +194,12 @@ export default new Vuex.Store({
     },
 
     /**
-     * Load all user progress data for puzzle
+     * Load all user progress data for puzzle. If current user does not have any
+     * existing progress data, we create a new entry for them.
+     *
      * @type {Promise}
      */
-    switchPuzzle: ({ state, commit}, data) => {
+    switchPuzzle: ({ state, commit, dispatch}, data) => {
       commit('setPuzzleId', data);
       commit('clearInput');
 
@@ -200,13 +212,24 @@ export default new Vuex.Store({
             progressCollection[progress.user_id] = progress;
           })
           commit('setPuzzleProgress', progressCollection);
+
+          // If current user has no progress data, create a new obj for them
+          if (!has(state.puzzleProgress, state.userId)) {
+            return dispatch('createUserPuzzleProgress', {
+              puzzleId: data,
+              userId: state.userId,
+            });
+          }
         })
     },
 
     // eslint-disable-next-line no-empty-pattern
-    createUserPuzzleProgress: ({}, data) => {
+    createUserPuzzleProgress: ({ commit }, data) => {
       const { userId, puzzleId } = data;
-      return axios.post(`/puzzles/${puzzleId}/users/${userId}`);
+      return axios.post(`/puzzles/${puzzleId}/users/${userId}`)
+        .then(res => {
+          commit('addUserPuzzleProgress', res.data);
+        });
     },
 
     loadProgress: ({ commit }, data) => {
