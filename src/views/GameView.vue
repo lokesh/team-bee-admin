@@ -3,7 +3,6 @@
     v-if="userProgressDataLoaded"
     class="view"
   >
-
     <div class="col-gameboard">
 
       <div class="row-switcher">
@@ -33,6 +32,7 @@
       :class="{ 'modal': modal === 'scoreboard' }"
     />
   </div>
+  <page-spinner v-else />
 </template>
 
 <script>
@@ -42,6 +42,7 @@ import Hive from '@/components/Hive.vue';
 import HiveActions from '@/components/HiveActions.vue';
 import HiveInput from '@/components/HiveInput.vue';
 import IconButton from '@/components/IconButton.vue';
+import PageSpinner from '@/components/PageSpinner.vue'
 import PuzzleSwitcher from '@/components/PuzzleSwitcher.vue'
 import Scoreboard from '@/components/Scoreboard.vue'
 import ScoreboardMini from '@/components/ScoreboardMini.vue'
@@ -54,6 +55,7 @@ export default {
     HiveActions,
     HiveInput,
     IconButton,
+    PageSpinner,
     PuzzleSwitcher,
     Scoreboard,
     ScoreboardMini,

@@ -1,16 +1,20 @@
 <template>
   <div class="app">
-    <router-view
-      v-if="isLoaded"
-    >
-
+    <router-view v-if="isLoaded">
     </router-view>
+    <page-spinner v-else />
   </div>
 </template>
 
 <script>
+import PageSpinner from '@/components/PageSpinner';
+
 export default {
   name: 'App',
+
+  components: {
+    PageSpinner,
+  },
 
   data() {
     return {

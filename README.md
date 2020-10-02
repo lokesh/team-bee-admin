@@ -3,11 +3,11 @@
 ## 🛠 To-do
 
 **Next**
-- [ ] Update CORS
-- [ ] Add loading indicator
-- [ ] Use socket.io to relay word additions between players
+- [x] Update CORS
+- [x] Add loading indicator
 - [ ] Admin for puzzle lists and generation.
 - [ ] Add simple token based security for puzzle crud
+- [ ] Use socket.io to relay word additions between players
 - [ ] Fix, date in UI one day off.
 
 **UI**
