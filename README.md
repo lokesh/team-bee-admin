@@ -3,14 +3,7 @@
 ## 🛠 To-do
 
 **Next**
-- [x] Mobile layout
-- [x] Add genius flag to progress bar. Once met, change to yellow bg and add 👑
-- [x] Review GameView created lifecycle method
-- [x] Add check so user progress for a puzzle isn't created multiple times
-- [x] Push to Heroku
-- [x] Odd flash on mobile on tap.
-- [x] Flag for local API development
-- [ ] Deploy on Heroku?
+[ ] ?
 
 **UI**
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
@@ -44,6 +37,7 @@
 npm run serve // Compiles and hot-reloads for development
 npm run build // Compiles and minifies for production
 npm run lint
+npm run deploy // FTPs files to lokeshdhakar.com/project/team-bee
 ```
 
 ### Set up
@@ -52,6 +46,9 @@ When the node env is set to `development`, the app will look for the API on loca
 
 If you want to test using the production API server, you can update `VUE_APP_USE_PRODUCTION_API` env var in `.env.local`.
 
+## 🚀 Deploy
+
+This project is hosted on a shared static server alongside my other content for lokeshdhakar.com. The files are sent up via ftp. 🐌
 
 ## 👷‍♀️ Architecture
 

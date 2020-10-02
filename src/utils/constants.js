@@ -1,2 +1,2 @@
-export const GENIUS_PERCENTAGE_SOLO = 0.65;
-export const GENIUS_PERCENTAGE_TEAM = 0.85;
+export const GENIUS_PERCENTAGE_SOLO = 0.5;
+export const GENIUS_PERCENTAGE_TEAM = 0.75;

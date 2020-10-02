@@ -23,3 +23,6 @@ pnpm-debug.log*
 *.sw?
 
 *.sublime-*
+
+.host*
+.ftp*
