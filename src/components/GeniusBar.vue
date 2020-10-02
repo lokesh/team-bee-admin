@@ -79,6 +79,7 @@ export default {
   border: var(--border);
   border-radius: var(--radius-sm);
   transition: 0.5s left;
+  background: white;
 }
 
 .flag::after {

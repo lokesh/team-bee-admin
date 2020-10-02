@@ -31,14 +31,14 @@
         class="msg-score"
       >
         <template v-if="displayFoundWordsCount === 1">
-          1 word and {{ displayPoints }} points
+          1 word and {{ displayPoints }} pts
         </template>
         <template v-else>
-          {{ displayFoundWordsCount}} words and {{ displayPoints }} points
+          {{ displayFoundWordsCount}} words and {{ displayPoints }} pts
         </template>
       </div>
       <div class="msg-max">
-        {{ puzzle.answers.length }} words and {{ possiblePoints }} points available
+        {{ puzzle.answers.length }} words and {{ possiblePoints }} pts available
       </div>
 
       <genius-bar

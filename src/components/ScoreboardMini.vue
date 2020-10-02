@@ -5,10 +5,10 @@
   >
     <div class="msg-score">
       <template v-if="foundWords.length === 1">
-        1 word and {{ points }} points
+        1 word and {{ points }} pts
       </template>
       <template v-else>
-        {{ foundWords.length}} words and {{ points }} points
+        {{ foundWords.length}} words and {{ points }} pts
       </template>
     </div>
     <genius-bar
