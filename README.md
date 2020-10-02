@@ -16,11 +16,10 @@ npm run lint
 - [x] Add genius flag to progress bar. Once met, change to yellow bg and add 👑
 - [x] Review GameView created lifecycle method
 - [x] Add check so user progress for a puzzle isn't created multiple times
-- [ ] Push to Heroku
-- [ ] Consolidate API and vue app into single project
-
-**Env**
-- [ ] Flag for local DB
+- [x] Push to Heroku
+- [x] Odd flash on mobile on tap.
+- [ ] Consolidate API and vue app into single project?
+- [ ] Flag for local API development
 
 **UI**
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
@@ -32,17 +31,16 @@ npm run lint
 **Gameplay**
 - [ ] Once answers revealed, disable submitting new words for that puzzle for that user?
 
-**User mgmt**
+**User mgmt and security**
 - [ ] Think about token for teams. Requiring a token to see user list on login.
 - [ ] User sign up form
-
-**Security**
 - [ ] API authentication
 
 **Puzzles**
 - [ ] Auto-gen puzzles
 
 **Before sharing**
+- [ ] Find a domain and final name
 - [ ] Update design to prevent any confusion with the original NYT game.
 - [ ] Give credit where credits are due for game design.
 

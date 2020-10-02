@@ -89,11 +89,13 @@ button {
   border: var(--border);
   border-radius: 36px;
   background: white;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 button:hover {
   cursor: pointer;
 }
+
 button:active {
   background: var(--color-muted);
 }

@@ -80,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+.hive-cell {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .shape {
   fill: var(--color-muted);
   transform-origin: center center;

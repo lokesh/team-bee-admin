@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import { GENIUS_PERCENTAGE } from '@/utils/constants';
+import { mapGetters } from 'vuex';
+import { GENIUS_PERCENTAGE_SOLO, GENIUS_PERCENTAGE_TEAM } from '@/utils/constants';
 
 export default {
     name: 'GeniusBar',
@@ -38,13 +39,21 @@ export default {
     },
 
     computed: {
+      ...mapGetters([
+        'teamMode',
+      ]),
+
       isGenius() {
-        return (this.percentComplete >= GENIUS_PERCENTAGE);
+        return (this.percentComplete >= this.geniusPercent);
+      },
+
+      geniusPercent() {
+        return this.teamMode ? GENIUS_PERCENTAGE_TEAM : GENIUS_PERCENTAGE_SOLO;
       },
 
       flagStyles() {
         const halfFlagWidth = `${28 / 2}px`;
-        const percent = `${GENIUS_PERCENTAGE * 100}%`;
+        const percent = `${this.geniusPercent * 100}%`;
         return {
           left: `calc(${percent} - ${halfFlagWidth})`,
         };
@@ -69,6 +78,7 @@ export default {
   padding: 1px 3px 0 3px;
   border: var(--border);
   border-radius: var(--radius-sm);
+  transition: 0.5s left;
 }
 
 .flag::after {
@@ -104,7 +114,7 @@ export default {
   height: 100%;
   background: var(--color-primary);
   transform-origin: left;
-  transition: 0.5s all;
+  transition: 0.5s transform;
 }
 
 </style>
