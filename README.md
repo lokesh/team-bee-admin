@@ -3,13 +3,17 @@
 ## 🛠 To-do
 
 **Next**
-[ ] ?
+- [ ] Update CORS
+- [ ] Add loading indicator
+- [ ] Use socket.io to relay word additions between players
+- [ ] Admin for puzzle lists and generation.
+- [ ] Add simple token based security for puzzle crud
+- [ ] Fix, date in UI one day off.
 
 **UI**
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
 
 **Real-time**
-- [ ] Use socket.io to relay word additions between players
 - [ ] Design distinct notifications for real-time.
 
 **Gameplay**
@@ -44,7 +48,7 @@ npm run deploy // FTPs files to lokeshdhakar.com/project/team-bee
 
 When the node env is set to `development`, the app will look for the API on localhost. You'll need to spin up the team-bee-api Node Express server for this.
 
-If you want to test using the production API server, you can update `VUE_APP_USE_PRODUCTION_API` env var in `.env.local`.
+The production API server hosted on Heroku has limited CORS domain origins to https://lokeshdhakar.com.
 
 ## 🚀 Deploy
 
