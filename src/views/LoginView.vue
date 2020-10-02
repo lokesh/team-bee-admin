@@ -25,6 +25,7 @@
 <script>
 import { mapState } from 'vuex';
 import axios from '@/axios';
+import p from '@/data/10159.json';
 
 export default {
   name: 'LoginView',
@@ -37,17 +38,13 @@ export default {
 
   methods: {
     async createPuzzle() {
-      // const puzzle = {
-      //   "
-      //   "outerLetters":["v","i","r","u","a","l"],
-      //   "answers":["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"]
-      // };
+      // console.log(p);
       try {
         const resp = await axios.post('/puzzles', {
-          name: "9968",
-          centerLetter: "t",
-          outerLetters:["v","i","r","u","a","l"],
-          answers:["altar","atrial","avatar","lariat","raita","ratatat","ritual","tall","taut","tiara","till","trail","trait","travail","trial","trill","trivia","trivial","ultra","vault","virtual","vital"],
+          name: p.puzzleID,
+          centerLetter: "o",
+          outerLetters:["c","n","e","x","i","t"],
+          answers: p.answers,
         });
         console.log(resp);
       } catch (error) {

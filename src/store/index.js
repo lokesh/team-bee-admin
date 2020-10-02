@@ -55,7 +55,7 @@ export default new Vuex.Store({
     },
     clearUser(state) {
       state.user = {};
-      localStorage.removeItem('user');
+      localStorage.removeItem('userId');
     },
 
     // Puzzles
