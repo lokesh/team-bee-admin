@@ -1,15 +1,6 @@
+# 🐝Team Bee
 
-# Hive Words
-
-## Quick start
-
-```
-npm run serve // Compiles and hot-reloads for development
-npm run build // Compiles and minifies for production
-npm run lint
-```
-
-## To-do
+## 🛠 To-do
 
 **Next**
 - [x] Mobile layout
@@ -18,8 +9,8 @@ npm run lint
 - [x] Add check so user progress for a puzzle isn't created multiple times
 - [x] Push to Heroku
 - [x] Odd flash on mobile on tap.
-- [ ] Consolidate API and vue app into single project?
-- [ ] Flag for local API development
+- [x] Flag for local API development
+- [ ] Deploy on Heroku?
 
 **UI**
 - [ ] Add feedback when delete, shuffle, and enter are pressed with kbd
@@ -44,7 +35,25 @@ npm run lint
 - [ ] Update design to prevent any confusion with the original NYT game.
 - [ ] Give credit where credits are due for game design.
 
-## Architecture
+
+## 👨‍💻 Local development
+
+### Quick reference
+
+```
+npm run serve // Compiles and hot-reloads for development
+npm run build // Compiles and minifies for production
+npm run lint
+```
+
+### Set up
+
+When the node env is set to `development`, the app will look for the API on localhost. You'll need to spin up the team-bee-api Node Express server for this.
+
+If you want to test using the production API server, you can update `VUE_APP_USE_PRODUCTION_API` env var in `.env.local`.
+
+
+## 👷‍♀️ Architecture
 
 ### API
 
