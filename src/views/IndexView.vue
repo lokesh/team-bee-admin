@@ -1,24 +1,45 @@
 <template>
   <div class="page">
-    <h2>Who's playing?</h2>
+    <h2>🐝 Team Bee Admin</h2>
 
     <div class="button-row">
       <button
-        v-if="false"
+        class="button-row-button"
         @click="createPuzzle"
       >
         Create Puzzle
       </button>
 
       <button
-        v-for="user in users"
-        :key="user.id"
         class="button-row-button"
-        @click="login(user.id)"
       >
-        {{ user.name }}
+        Test
       </button>
     </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Center</th>
+          <th>Outer</th>
+          <th>Words</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="puzzle in puzzles"
+          :key="puzzle.id"
+        >
+          <td>{{ puzzle.id }}</td>
+          <td>{{ puzzle.center_letter }}</td>
+          <td>{{ puzzle.outer_letters.join(', ') }}</td>
+          <td>{{ puzzle.answers.length }}</td>
+          <td>{{ calcPoints(puzzle.answers) }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -26,14 +47,21 @@
 import { mapState } from 'vuex';
 import axios from '@/axios';
 import p from '@/data/10159.json';
+import { calcPoints } from '@/utils';
 
 export default {
   name: 'LoginView',
 
   computed: {
     ...mapState([
-      'users',
+      'puzzles'
     ]),
+  },
+
+  data() {
+    return {
+      calcPoints,
+    }
   },
 
   methods: {
@@ -51,12 +79,6 @@ export default {
         console.error(error);
       }
     },
-
-    login(id) {
-      // const user = this.users.find(user => user.id === id);
-      this.$store.commit('setUserId', id);
-      this.$router.push('game')
-    },
   },
 }
 </script>
@@ -64,26 +86,5 @@ export default {
 <style scoped>
 .page {
   padding: var(--gutter);
-  text-align: center;
-}
-
-.button-row-button {
-  margin-bottom: var(--gutter);
-  min-width: 50vw;
-}
-
-.button-row {
-  flex-direction: column;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .button-row {
-    flex-direction: row;
-  }
-
-  .button-row-button {
-    min-width: auto;
-  }
 }
 </style>

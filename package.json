@@ -1,18 +1,15 @@
 {
-  "name": "team-bee",
+  "name": "team-bee-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "deploy": "node ./build/deploy.js"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "lodash.filter": "^4.6.0",
-    "lodash.get": "^4.4.2",
     "lodash.has": "^4.5.2",
     "lodash.shuffle": "^4.2.0",
     "lodash.values": "^4.3.0",
@@ -29,7 +26,6 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "ftp-deploy": "^2.3.7",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

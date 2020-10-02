@@ -1,30 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '@/store'
-import GameView from '@/views/GameView.vue'
-import LoginView from '@/views/LoginView.vue'
+import IndexView from '@/views/IndexView.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Login',
-    component: LoginView,
-  },
-  {
-    path: '/game',
-    name: 'Game',
-    component: GameView,
-
-    /* Req user to have been picked */
-    beforeEnter: (to, from, next) => {
-      if (!store.getters.user) {
-        next({ name: 'Login' });
-      } else {
-        next();
-      }
-    },
+    name: 'Index',
+    component: IndexView,
   },
 ]
 

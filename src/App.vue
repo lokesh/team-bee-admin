@@ -23,19 +23,7 @@ export default {
   },
 
   async beforeCreate() {
-    await this.$store.dispatch('loadUsers');
     await this.$store.dispatch('loadPuzzles');
-
-    // Check if user is already set, then skip login screen
-    const userId = JSON.parse(localStorage.getItem('userId'));
-
-    if (userId) {
-      this.$store.commit('setUserId', userId);
-      if (this.$route.name !== 'Game') {
-        this.$router.push({ name: 'Game' });
-      }
-    }
-
     this.isLoaded = true;
   }
 }
