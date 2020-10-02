@@ -64,10 +64,15 @@
             v-if="teamMode"
           >
             <user-tag
-              v-for="user in row.users"
-              :user-id="user"
-              :key="`user-${user}`"
+              v-for="user in puzzleProgress"
+              :user-id="user.user_id"
+              :key="`user-${user.user_id}`"
               class="tag"
+              :class="{
+                'invisible-tag': !row.users.includes(user.user_id),
+                'is-first': row.users[0] === user.user_id,
+                'is-last': row.users[row.users.length - 1] === user.user_id,
+              }"
             />
           </div>
         </div>
@@ -276,13 +281,20 @@ export default {
   margin-left: var(--gutter);
 }
 
-.tag {
-  margin-left: 4px;
+.tag.invisible-tag {
+  visibility: hidden;
 }
 
-.tag:last-of-type {
-  margin-left: 0;
+.tag.is-first {
+  border-top-right-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
 }
+
+.tag.is-last {
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
 
 .hint {
   background: var(--color);
@@ -323,7 +335,6 @@ export default {
 
   .list {
     display: flex;
-    height: 50vh;
   }
 }
 </style>

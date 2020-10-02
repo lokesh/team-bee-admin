@@ -42,7 +42,6 @@ export default {
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
-  border-radius: var(--radius-sm);
   color: white;
   background-color: var(--color-muted);
 }
