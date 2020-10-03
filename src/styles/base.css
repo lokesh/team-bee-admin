@@ -155,5 +155,6 @@ th,
 td {
   padding: 6px 12px;
   border: var(--divider);
+  vertical-align: top;
   text-align: left;
 }

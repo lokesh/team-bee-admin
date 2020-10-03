@@ -35,7 +35,5 @@ export default {
 
 <style scoped>
 .app {
-  max-width: 1024px;
-  margin: 0 auto;
 }
 </style>
