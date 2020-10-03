@@ -16,6 +16,7 @@ export default new Vuex.Store({
   state: {
     users: {},
     puzzles: {},
+    dictionary: [],
   },
 
   mutations: {

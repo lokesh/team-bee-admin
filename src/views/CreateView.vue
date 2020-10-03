@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    <h3>Index</h3>
     <div class="button-row">
       <button
         v-if="false"
@@ -20,7 +19,6 @@
           <th>Points</th>
           <th class="wide-col">Answers</th>
           <th class="wide-col">10k</th>
-          <th class="wide-col">39k</th>
           <th class="wide-col">61k</th>
           <th class="wide-col">194k</th>
           <th class="wide-col">466k</th>
@@ -42,10 +40,6 @@
             <td>
             <div v-html="missing(puzzle, d10)" />
             <div v-html="answers(puzzle, d10)" />
-          </td>
-          <td>
-            <div v-html="missing(puzzle, d39)" />
-            <div v-html="answers(puzzle, d39)" />
           </td>
           <td>
             <div v-html="missing(puzzle, d61)" />
@@ -84,7 +78,6 @@ export default {
       calcPoints,
       dictionary: null,
       d10: [],
-      d39: [],
       d61: [],
       d194: [],
       d466: [],
@@ -96,9 +89,6 @@ export default {
     let resp = await fetch('/data/usa-61k.json');
     let data = await resp.json();
     this.d61 = Object.keys(data);
-
-    resp = await fetch('/data/dictionary.json');
-    this.d39 = await resp.json();
 
     resp = await fetch('/data/eng-466k.json');
     data = await resp.json();

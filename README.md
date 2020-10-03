@@ -7,6 +7,17 @@
 **Performance**
 - [ ] Filter dictionaries of words shorter than four letters and those with more than seven unique characters.
 
+## 👨‍💻 Local development
+
+### Quick reference
+
+```
+npm run serve // Compiles and hot-reloads for development
+npm run build // Compiles and minifies for production
+npm run lint
+npm run dictionary // Builds dictionary.json
+```
+
 ## 📖 Word lists
 
 The list used is for building an answers list is constructed as follows:

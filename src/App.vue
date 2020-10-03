@@ -1,5 +1,22 @@
 <template>
   <div class="app">
+    <h2>🐝 Team Bee Admin</h2>
+
+    <div class="button-row">
+      <router-link
+        to="/"
+        class="text-button"
+      >
+        Index
+      </router-link>
+      <router-link
+        to="/create"
+        class="text-button"
+      >
+        Create
+      </router-link>
+    </div>
+
     <router-view v-if="isLoaded">
     </router-view>
     <page-spinner v-else />
@@ -35,5 +52,11 @@ export default {
 
 <style scoped>
 .app {
+  padding: var(--gutter);
+}
+
+.button-row {
+  display: flex;
+  gap: var(--gutter);
 }
 </style>

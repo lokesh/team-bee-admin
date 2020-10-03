@@ -75,6 +75,12 @@ input {
   font-family: var(--font-family);
 }
 
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
 p {
   margin-top: 0;
 }
