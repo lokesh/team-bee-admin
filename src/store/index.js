@@ -29,6 +29,18 @@ export default new Vuex.Store({
     },
   },
 
+  getters: {
+    // Sorted by latest
+    puzzlesArray: (state) => {
+      let arr = Object.values(state.puzzles);
+      return arr.sort((a, b) => {
+        let aTime = new Date(a.date).getTime();
+        let bTime = new Date(b.date).getTime();
+        return (aTime > bTime) ? -1 : 1;
+      });
+    },
+  },
+
   actions: {
     /**
      * Loads all user data. Used to bootstrap app.
@@ -50,7 +62,7 @@ export default new Vuex.Store({
      * @return {Promise}]
      */
     loadPuzzles: ({ commit }) => {
-      return axios.get('/puzzles')
+      return axios.get('/puzzles?order_by=date&dir=desc')
         .then(res => {
           const puzzles = {};
 
@@ -59,6 +71,13 @@ export default new Vuex.Store({
             puzzles[puzzle.id] = puzzle;
           })
           commit('setPuzzles', puzzles);
+        });
+    },
+
+    deletePuzzle: ({ dispatch }, id) => {
+      return axios.delete(`/puzzles/${id}`)
+        .then(() => {
+          return dispatch('loadPuzzles');
         });
     },
   },

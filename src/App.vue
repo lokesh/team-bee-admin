@@ -15,6 +15,12 @@
       >
         Create
       </router-link>
+      <router-link
+        to="/ditionaries"
+        class="text-button"
+      >
+        Dictionaries
+      </router-link>
     </div>
 
     <router-view v-if="isLoaded">

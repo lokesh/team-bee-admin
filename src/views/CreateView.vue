@@ -146,6 +146,7 @@ export default {
 
     randomize() {
       let count = 0;
+      let loopCounter = 0;
       while(count < 10) {
         // Pick 7 random letters, first letter is center.
         let alpha = [...'abcdefghijklmnopqrstuvwxyz']
@@ -185,6 +186,8 @@ export default {
 
           count += 1;
         }
+        loopCounter += 1;
+        console.log(loopCounter);
       }
     },
   },
