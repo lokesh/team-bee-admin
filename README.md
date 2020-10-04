@@ -3,9 +3,9 @@
 
 ## 🛠 To-do
 
+- [ ] Make sure not to save a combo of letters that was prev userd.
 
-**Performance**
-- [ ] Filter dictionaries of words shorter than four letters and those with more than seven unique characters.
+
 
 ## 👨‍💻 Local development
 

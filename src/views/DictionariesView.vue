@@ -130,21 +130,6 @@ export default {
       return dict;
     },
 
-    // async createPuzzle() {
-    //   // console.log(p);
-    //   try {
-    //     const resp = await axios.post('/puzzles', {
-    //       name: p.puzzleID,
-    //       centerLetter: "o",
-    //       outerLetters:["c","n","e","x","i","t"],
-    //       answers: p.answers,
-    //     });
-    //     console.log(resp);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-
     missing(puzzle, dict) {
       const missing = puzzle.answers.filter(word => {
         return !dict.includes(word);

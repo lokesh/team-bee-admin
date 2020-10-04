@@ -18,3 +18,8 @@ export const calcPoints = (words) => words.reduce((totalPoints, word) => {
 export const isPangram = (word) => {
   return new Set(word.split('')).size === 7;
 }
+
+export const addOneDay = (date) => {
+  const day = 60 * 60 * 24 * 1000;
+  return new Date(date.getTime() + day);
+}

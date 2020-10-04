@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '@/axios';
+import { addOneDay } from '@/utils';
 
 Vue.use(Vuex)
 
@@ -79,6 +80,20 @@ export default new Vuex.Store({
         .then(() => {
           return dispatch('loadPuzzles');
         });
+    },
+
+    savePuzzle: ({ dispatch, getters }, puzzle) => {
+      const { center_letter, outer_letters, answers } = puzzle;
+      const date = addOneDay(new Date(getters.puzzlesArray[0].date))
+      const pgDate = date.toJSON().substr(0, 10)
+      return axios.post('/puzzles', {
+        date: pgDate,
+        center_letter,
+        outer_letters,
+        answers,
+      }).then(() => {
+        return dispatch('loadPuzzles');
+      });
     },
   },
 })

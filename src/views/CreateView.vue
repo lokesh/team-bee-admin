@@ -33,12 +33,11 @@
       </div>
     </div>
 
-    <h3>Points</h3>
-    {{ points }}
-    <br /><br />
+    <div class="data-row">Points: {{ points }}</div>
+    <div class="data-row">Panagrams: {{ panagrams && panagrams.join(', ') }}</div>
 
-    <h3>Words </h3>
-    {{ answers.join(', ') }}
+    <div>Words </div>
+    <p>{{ answers.join(', ') }}</p>
 
     <hr />
     <br />
@@ -60,6 +59,7 @@
           <th>Points</th>
           <th>Panagrams</th>
           <th>Answers</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -67,13 +67,20 @@
           v-for="(result, i) in results"
           :key="`result-${i}`"
         >
-          <td>{{ result.center }}</td>
-          <td>{{ result.outer.join(', ') }}</td>
+          <td>{{ result.center_letter }}</td>
+          <td>{{ result.outer_letters.join(', ') }}</td>
           <td>{{ result.points }}</td>
           <td>{{ result.panagrams }}</td>
           <td>
             {{ result.answers.length }}<br />
             {{ result.answers.join(', ') }}
+          </td>
+          <td>
+            <button
+              @click="savePuzzle(result)"
+            >
+              Save
+            </button>
           </td>
         </tr>
       </tbody>
@@ -101,6 +108,7 @@ export default {
       outerInput: '',
       calcPoints,
       points: '',
+      panagrams: '',
       answers: [],
       dictionary: [],
       results: [],
@@ -141,6 +149,11 @@ export default {
         })
       });
 
+      console.log(this.answers);
+      this.panagrams = this.answers.filter(word => {
+          return new Set(word.split('')).size === 7;
+        })
+
       this.points = calcPoints(this.answers);
     },
 
@@ -152,14 +165,14 @@ export default {
         let alpha = [...'abcdefghijklmnopqrstuvwxyz']
         alpha = shuffle(alpha);
 
-        let center = alpha[0];
-        let outer = alpha.slice(1, 7);
-        let letters = [center, ...outer];
+        let center_letter = alpha[0];
+        let outer_letters = alpha.slice(1, 7);
+        let letters = [center_letter, ...outer_letters];
 
         let answers = this.dictionary.filter(word => {
           // must container center letter
           let arr = word.split('');
-          if (!arr.includes(center)) {
+          if (!arr.includes(center_letter)) {
             return false
           }
 
@@ -175,10 +188,10 @@ export default {
           return new Set(word.split('')).size === 7;
         })
 
-        if (panagrams.length > 0 && points > 150 && points < 400) {
+        if (panagrams.length > 0 && points > 125 && points < 400) {
           this.results.push({
-            center,
-            outer,
+            center_letter,
+            outer_letters,
             answers,
             points,
             panagrams,
@@ -190,6 +203,10 @@ export default {
         console.log(loopCounter);
       }
     },
+
+    savePuzzle(puzzle) {
+      this.$store.dispatch('savePuzzle', puzzle);
+    },
   },
 }
 </script>
@@ -200,5 +217,9 @@ export default {
   gap: var(--gutter);
   align-items: flex-end;
   margin-bottom: var(--gutter);
+}
+
+.data-row {
+  margin-bottom: 6px;
 }
 </style>

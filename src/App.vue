@@ -16,7 +16,7 @@
         Create
       </router-link>
       <router-link
-        to="/ditionaries"
+        to="/dictionaries"
         class="text-button"
       >
         Dictionaries
