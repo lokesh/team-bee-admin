@@ -149,6 +149,25 @@ button:focus-visible {
   margin-right: 0;
 }
 
+
+/* ------- */
+/* Input */
+/* ------- */
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+input {
+  padding: 8px 12px;
+  font-size: 16px;
+  border: var(--border);
+  border-radius: 8px;
+  background: white;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 /* ------ */
 /* Tables */
 /* ------ */

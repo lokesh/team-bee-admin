@@ -10,48 +10,70 @@
       </button>
     </div>
 
+    <div class="row">
+      <div>
+        <label>Center letter</label>
+        <input
+          ref="center"
+          v-model="centerInput"
+          maxlength="1"
+          type="text"
+          @keyup.enter="submit"
+        />
+      </div>
+
+      <div>
+        <label>Outer letters</label>
+        <input
+          v-model="outerInput"
+          type="text"
+          maxlength="6"
+          @keyup.enter="submit"
+        />
+      </div>
+    </div>
+
+    <h3>Points</h3>
+    {{ points }}
+    <br /><br />
+
+    <h3>Words </h3>
+    {{ answers.join(', ') }}
+
+    <hr />
+    <br />
+
+    <div class="row">
+      <button
+          class="button-row-button"
+          @click="randomize"
+        >
+          Generate random puzzles
+      </button>
+    </div>
+
     <table>
       <thead>
         <tr>
-          <th>Id</th>
           <th>Center</th>
-          <th>Outer</th>
+          <th style="width: 8em">Outer</th>
           <th>Points</th>
-          <th class="wide-col">Answers</th>
-          <th class="wide-col">10k</th>
-          <th class="wide-col">61k</th>
-          <th class="wide-col">194k</th>
-          <th class="wide-col">466k</th>
+          <th>Panagrams</th>
+          <th>Answers</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="puzzle in puzzles"
-          :key="puzzle.id"
+          v-for="(result, i) in results"
+          :key="`result-${i}`"
         >
-          <td>{{ puzzle.id }}</td>
-          <td>{{ puzzle.center_letter }}</td>
-          <td>{{ puzzle.outer_letters.join(', ') }}</td>
-          <td>{{ calcPoints(puzzle.answers) }}</td>
+          <td>{{ result.center }}</td>
+          <td>{{ result.outer.join(', ') }}</td>
+          <td>{{ result.points }}</td>
+          <td>{{ result.panagrams }}</td>
           <td>
-            {{ puzzle.answers.length }}<br />
-            {{ puzzle.answers.join(', ') }}
-          </td>
-            <td>
-            <div v-html="missing(puzzle, d10)" />
-            <div v-html="answers(puzzle, d10)" />
-          </td>
-          <td>
-            <div v-html="missing(puzzle, d61)" />
-            <div v-html="answers(puzzle, d61)" />
-          </td>
-          <td>
-            <div v-html="missing(puzzle, d194)" />
-            <div v-html="answers(puzzle, d194)" />
-          </td>
-          <td>
-            <div v-html="missing(puzzle, d466)" />
-            <div v-html="answers(puzzle, d466)" />
+            {{ result.answers.length }}<br />
+            {{ result.answers.join(', ') }}
           </td>
         </tr>
       </tbody>
@@ -61,7 +83,7 @@
 
 <script>
 import { mapState } from 'vuex';
-// import axios from '@/axios';
+import shuffle from 'lodash.shuffle';
 import { calcPoints } from '@/utils';
 
 export default {
@@ -75,85 +97,41 @@ export default {
 
   data() {
     return {
+      centerInput: '',
+      outerInput: '',
       calcPoints,
-      dictionary: null,
-      d10: [],
-      d61: [],
-      d194: [],
-      d466: [],
-
+      points: '',
+      answers: [],
+      dictionary: [],
+      results: [],
     }
   },
 
   async created() {
-    let resp = await fetch('/data/usa-61k.json');
-    let data = await resp.json();
-    this.d61 = Object.keys(data);
+    let resp = await fetch('/data/dictionary.json');
+    this.dictionary = await resp.json();
+  },
 
-    resp = await fetch('/data/eng-466k.json');
-    data = await resp.json();
-    this.d466 = Object.keys(data);
+  mounted() {
+    this.$refs.center.focus();
 
-    resp = await fetch('/data/eng-194k.txt');
-    data = await resp.text();
-    this.d194 = data.split('\n');
-
-    resp = await fetch('/data/usa-10k.txt');
-    data = await resp.text();
-    this.d10 = data.split('\n');
-
+    // this.randomize();
   },
 
   methods: {
-    // async loadJSON(file) {
-    //   return Object.keys(data);
-    // },
+    submit() {
+      let letters = [this.centerInput, ...this.outerInput.split('')];
+      const letterSet = new Set(letters);
+      letters = [...letterSet];
+      if (letters.length !== 7) {
+        console.log('Invalid letters');
+        return;
+      }
 
-    async loadText(file) {
-      const resp = await fetch(file);
-      const data = await resp.text();
-      const arr = data.split('\n');
-      const dict = {};
-      arr.forEach(word => {
-        dict[word] = 1;
-      })
-      return dict;
-    },
-
-    // async createPuzzle() {
-    //   // console.log(p);
-    //   try {
-    //     const resp = await axios.post('/puzzles', {
-    //       name: p.puzzleID,
-    //       centerLetter: "o",
-    //       outerLetters:["c","n","e","x","i","t"],
-    //       answers: p.answers,
-    //     });
-    //     console.log(resp);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
-
-    missing(puzzle, dict) {
-      const missing = puzzle.answers.filter(word => {
-        return !dict.includes(word);
-      });
-
-      return `<b>Missing ${missing.length} words</b><br /> ${missing.join(', ')}<br /><br />`;
-    },
-
-    answers(puzzle, dict) {
-      let letters = [puzzle.center_letter, ...puzzle.outer_letters];
-      const answers = dict.filter(word => {
-        // min 4 letters
-        if (word.length < 4) {
-          return false;
-        }
-
+      this.answers = this.dictionary.filter(word => {
         // must container center letter
         let arr = word.split('');
-        if (!arr.includes(puzzle.center_letter)) {
+        if (!arr.includes(this.centerInput)) {
           return false
         }
 
@@ -162,23 +140,62 @@ export default {
           return letters.includes(letter);
         })
       });
-      return `<b>Answers ${answers.length} words and ${calcPoints(answers)}pts</b><br />${answers.join(', ')}<br /><br />`;
+
+      this.points = calcPoints(this.answers);
     },
 
-    dictLookup(puzzle) {
-      console.log('puzzle', [puzzle.center_letter, ...puzzle.outer_letters]);
-      puzzle.answers.forEach(word => {
-        if (!this.dictionary[word]) {
-          console.log('missing word:', word)
+    randomize() {
+      let count = 0;
+      while(count < 10) {
+        // Pick 7 random letters, first letter is center.
+        let alpha = [...'abcdefghijklmnopqrstuvwxyz']
+        alpha = shuffle(alpha);
+
+        let center = alpha[0];
+        let outer = alpha.slice(1, 7);
+        let letters = [center, ...outer];
+
+        let answers = this.dictionary.filter(word => {
+          // must container center letter
+          let arr = word.split('');
+          if (!arr.includes(center)) {
+            return false
+          }
+
+          // All letters must be one of 7
+          return arr.every(letter => {
+            return letters.includes(letter);
+          })
+        });
+
+        let points = calcPoints(answers);
+
+        let panagrams = answers.filter(word => {
+          return new Set(word.split('')).size === 7;
+        })
+
+        if (panagrams.length > 0 && points > 150 && points < 400) {
+          this.results.push({
+            center,
+            outer,
+            answers,
+            points,
+            panagrams,
+          });
+
+          count += 1;
         }
-      })
+      }
     },
   },
 }
 </script>
 
 <style scoped>
-.wide-col {
-  min-width: 25em;
+.row {
+  display: flex;
+  gap: var(--gutter);
+  align-items: flex-end;
+  margin-bottom: var(--gutter);
 }
 </style>
