@@ -47,6 +47,10 @@ export default {
 
   async beforeCreate() {
     await this.$store.dispatch('loadPuzzles');
+
+    let resp = await fetch('/data/dictionary.json');
+    this.$store.state.dictionary = await resp.json();
+
     this.isLoaded = true;
   }
 }

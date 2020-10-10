@@ -41,7 +41,6 @@ Source: [https://github.com/first20hours/google-10000-english](https://github.co
 
 Missing: cootie, ecotone, iconic, neocon, nonce, nontoxic, toon, toonie, convoyed, cocooned, coed, condo.
 
-Source: [http://www.gwicks.net/dictionaries.htm](http://www.gwicks.net/dictionaries.htm)
 
 ### English - 194,000 words
 `eng-194k.txt`
