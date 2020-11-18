@@ -104,7 +104,7 @@ export default {
       let count = 0;
       while(count < this.puzzleCount) {
         // Pick 7 random letters, first letter is center.
-        let alpha = [...'abcdefghijklmnopqrstuvwxyz']
+        let alpha = [...'abcdefghijklmnopqrtuvwxyz']
         alpha = shuffle(alpha);
 
         let center_letter = alpha[0];
