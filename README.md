@@ -11,6 +11,8 @@
 
 ### Quick reference
 
+When working in dev env the app will look for the API locally at port 3000 so spin up the team-bee-api project.
+
 ```
 npm run serve // Compiles and hot-reloads for development
 npm run build // Compiles and minifies for production
