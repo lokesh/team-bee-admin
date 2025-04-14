@@ -89,7 +89,7 @@ export default {
       minPanagrams: 1,
       minPoints: 100,
       maxPoints: 400,
-      puzzleCount: 10,
+      puzzleCount: 1,
       results: [],
     }
   },
@@ -134,6 +134,7 @@ export default {
           && points > this.minPoints
           && points < this.maxPoints
         ) {
+          console.log(center_letter, outer_letters, answers, points, panagrams);
           this.results.push({
             center_letter,
             outer_letters,

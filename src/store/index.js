@@ -28,6 +28,10 @@ export default new Vuex.Store({
     setPuzzles(state, val) {
       Vue.set(state, 'puzzles', val);
     },
+
+    addPuzzle(state, puzzle) {
+      Vue.set(state.puzzles, puzzle.id, puzzle);
+    },
   },
 
   getters: {
@@ -82,16 +86,53 @@ export default new Vuex.Store({
         });
     },
 
-    savePuzzle: ({ dispatch, getters }, puzzle) => {
+    savePuzzle: ({ commit, dispatch, getters }, puzzle) => {
       const { center_letter, outer_letters, answers } = puzzle;
-      const date = addOneDay(new Date(getters.puzzlesArray[0].date))
-      const pgDate = date.toJSON().substr(0, 10)
+      
+      // Get all existing puzzle dates and normalize them to YYYY-MM-DD format
+      const existingDates = new Set(getters.puzzlesArray.map(p => {
+        const d = new Date(p.date);
+        return d.toISOString().split('T')[0];
+      }));
+      console.log('Existing puzzle dates:', Array.from(existingDates));
+      
+      // Start with today
+      let date = new Date();
+      date.setHours(0, 0, 0, 0);
+      
+      // Format date as YYYY-MM-DD
+      const formatDate = (d) => d.toISOString().split('T')[0];
+      
+      console.log('Starting date check from:', formatDate(date));
+      
+      // Keep trying dates until we find one that doesn't exist
+      let attempts = 0;
+      while (existingDates.has(formatDate(date))) {
+        console.log(`Attempt ${attempts + 1}: Date ${formatDate(date)} exists, trying next day`);
+        date = addOneDay(date);
+        attempts++;
+        if (attempts > 30) {
+          console.error('Too many attempts to find a free date');
+          break;
+        }
+      }
+      
+      const pgDate = formatDate(date);
+      console.log('Selected date:', pgDate);
       return axios.post('/puzzles', {
         date: pgDate,
         center_letter,
         outer_letters,
         answers,
-      }).then(() => {
+      }).then((response) => {
+        // Add the new puzzle to the store immediately
+        commit('addPuzzle', {
+          id: response.data.id,
+          date: pgDate,
+          center_letter,
+          outer_letters,
+          answers,
+        });
         return dispatch('loadPuzzles');
       });
     },
